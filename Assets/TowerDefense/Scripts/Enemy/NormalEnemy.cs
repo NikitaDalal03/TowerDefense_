@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class EnemyA : Enemy
+public class NormalEnemy : Enemy
 {
-    public override void Start()
+    public override void MoveAlongPath()
     {
-        base.Start();
-        health = 200f;
-        speed = 3f;
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 }
+
+

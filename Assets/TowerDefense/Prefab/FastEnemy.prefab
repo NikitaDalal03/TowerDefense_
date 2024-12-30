@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6091320708836319465}
   - component: {fileID: 6563067144843169012}
   - component: {fileID: 4381106675578098199}
-  - component: {fileID: -7238661429188813323}
+  - component: {fileID: -8133878658125996896}
+  - component: {fileID: -5920414247028706496}
   m_Layer: 0
   m_Name: FastEnemy
   m_TagString: Untagged
@@ -108,7 +109,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-7238661429188813323
+--- !u!114 &-8133878658125996896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,5 +121,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229b0d3804ee1481ebc9c1199f4d85c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
   health: 100
+  damage: 10
+--- !u!114 &-5920414247028706496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8172158806060109180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fbc45ea6d5c44048d6ba1fa2b26e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   speed: 5

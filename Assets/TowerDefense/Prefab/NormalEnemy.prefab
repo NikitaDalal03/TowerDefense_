@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 964667573580510227}
   - component: {fileID: 7421990983063938223}
   - component: {fileID: 3070796433882577728}
+  - component: {fileID: -6590308721728935450}
   m_Layer: 0
   m_Name: NormalEnemy
   m_TagString: Untagged
@@ -118,5 +119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ae2e488d8eb45c389d2182e0ae60a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   speed: 3
+  health: 100
+  damage: 10
+--- !u!114 &-6590308721728935450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575073559706530902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fbc45ea6d5c44048d6ba1fa2b26e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
