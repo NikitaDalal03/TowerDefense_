@@ -47,7 +47,6 @@ public class TowerPlacement : MonoBehaviour
                     {
                         GameLoopManager.towersInGame.Add(currentPlacingTower.GetComponent<TowerBehavior>());
                         
-
                         towerCollider.isTrigger = false;
                         currentPlacingTower = null;
                     }                    

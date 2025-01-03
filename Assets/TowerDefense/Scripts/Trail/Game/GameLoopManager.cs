@@ -7,10 +7,13 @@ using UnityEngine.Jobs;
 
 public class GameLoopManager : MonoBehaviour
 {
-    public static List<TowerBehavior> towersInGame;
 
+    public static List<TowerBehavior> towersInGame;
     public static Vector3[] nodePositions;
     public static float[] nodeDistances;
+
+    private static Queue<ApplyEffectData> EffectsQueue;
+    private static Queue<EnemyDamageData> DamageData;
     private static Queue<Enemy> enemiesToRemove;
     private static Queue<int> enemyIdsToSummon;
 
@@ -19,6 +22,8 @@ public class GameLoopManager : MonoBehaviour
 
     void Start()
     {
+        EffectsQueue = new Queue<ApplyEffectData>();
+        DamageData = new Queue<EnemyDamageData>();
         towersInGame = new List<TowerBehavior>();
         enemyIdsToSummon = new Queue<int>();
         enemiesToRemove = new Queue<Enemy>();
@@ -115,10 +120,43 @@ public class GameLoopManager : MonoBehaviour
             }
 
             //apply effects
+            if (EffectsQueue.Count > 0)
+            {
+                for (int i = 0; i < EffectsQueue.Count; i++)
+                {
+                    ApplyEffectData currentDamageData = EffectsQueue.Dequeue();
+                    Effect effectDuplicate = currentDamageData.EnemyToAffect.ActiveEffects.Find(x => x.EffectName == currentDamageData.EffectToApply.EffectName);
 
+                    if (effectDuplicate == null)
+                    {
+                        currentDamageData.EnemyToAffect.ActiveEffects.Add(currentDamageData.EffectToApply);
+                    }
+                    else
+                    {
+                        effectDuplicate.ExpireTime = currentDamageData.EffectToApply.ExpireTime;
+                    }
+                }
+            }
+
+            //tick enemies
+            foreach(Enemy currentEnemy in EntitySummoners.enemiesInGame)
+            {
+                currentEnemy.Tick();
+            }
 
             //damage enemies
-
+            if (DamageData.Count > 0)
+            {
+                for (int i = 0; i < DamageData.Count; i++)
+                {
+                    EnemyDamageData currentDamageData = DamageData.Dequeue();
+                    currentDamageData.targetedEnemy.health -= currentDamageData.totalDamage / currentDamageData.Resistance;
+                    if(currentDamageData.targetedEnemy.health <= 0f)
+                    {
+                        EnqueueEnemyToRemove(currentDamageData.targetedEnemy);
+                    }
+                }
+            }
 
             //remove enemies
             if (enemiesToRemove.Count > 0)
@@ -135,6 +173,16 @@ public class GameLoopManager : MonoBehaviour
         }
     }
 
+    public static void EnqueueEffectsToApply(ApplyEffectData effectData)
+    {
+        EffectsQueue.Enqueue(effectData);
+    }
+
+    public static void EnqueueDamageData(EnemyDamageData damageData)
+    {
+        DamageData.Enqueue(damageData);
+    }
+
     public static void EnqueueEnemyIDToSummon(int id)
     {
         enemyIdsToSummon.Enqueue(id);
@@ -146,6 +194,52 @@ public class GameLoopManager : MonoBehaviour
     }
 }
 
+public class Effect
+{
+    public Effect(string effectName, float damageRate, float damage, float expireTime )
+    {
+        ExpireTime = expireTime;
+        EffectName = effectName;
+        DamageRate = damageRate;
+        Damage = damage;
+    }
+
+    public string EffectName;
+
+    public float DamageDelay;
+    public float Damage;
+    public float ExpireTime;
+    public float DamageRate;
+}
+
+public struct ApplyEffectData
+{
+    public ApplyEffectData(Enemy enemyToAffect, Effect effectToApply)
+    {
+        EnemyToAffect = enemyToAffect;
+        EffectToApply = effectToApply;
+    }
+
+    public Enemy EnemyToAffect;
+    public Effect EffectToApply;
+
+
+}
+
+public struct EnemyDamageData
+{
+    public EnemyDamageData(Enemy target, float damage, float resistance)
+    {
+        targetedEnemy = target;
+        totalDamage = damage;
+        Resistance = resistance;
+    }
+
+    public Enemy targetedEnemy;
+    public float totalDamage;
+    public float Resistance;
+
+}
 
 public struct MovesEnemiesJob : IJobParallelForTransform
 {

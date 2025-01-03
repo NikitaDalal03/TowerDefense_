@@ -9,7 +9,7 @@ public class TowersTargetting
     public enum TargetType
     {
         First,
-        Last,
+        Last,   
         Close
     }
 
@@ -58,22 +58,24 @@ public class TowersTargetting
 
         JobHandle dependency = new JobHandle();
         JobHandle SearchJobHandle = EnemySearchJob.Schedule(enemiesToCalculate.Length, dependency);
-
         SearchJobHandle.Complete();
 
-        EnemyIndexToReturn = enemiesToCalculate[enemyToIndex[0]].EnemyIndex;
+        if(enemyToIndex[0] != -1)
+        {
+            EnemyIndexToReturn = enemiesToCalculate[enemyToIndex[0]].EnemyIndex;
+            
+            enemiesToCalculate.Dispose();
+            NodePositions.Dispose();
+            NodeDistances.Dispose();
+            enemyToIndex.Dispose();
+            return EntitySummoners.enemiesInGame[EnemyIndexToReturn];
+        }
 
         enemiesToCalculate.Dispose();
         NodePositions.Dispose();
         NodeDistances.Dispose();
         enemyToIndex.Dispose();
-
-        if(EnemyIndexToReturn == -1)
-        {
-            return null;
-        }
-
-        return EntitySummoners.enemiesInGame[EnemyIndexToReturn];
+        return null;
     }
 
 
@@ -91,8 +93,6 @@ public class TowersTargetting
         public int EnemyIndex;
         public int NodeIndex;
         public float Health;
-
-
     }
 
     struct SearchForEnemy : IJobFor

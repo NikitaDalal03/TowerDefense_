@@ -6,6 +6,8 @@ public class EntitySummoners : MonoBehaviour
 {
     public static List<Transform> enemiesInGameTransform;
     public static List<Enemy> enemiesInGame;
+
+    public static Dictionary<Transform, Enemy> enemyTransformPairs;
     public static Dictionary<int, GameObject> enemyPrefabs;
     public static Dictionary<int, Queue<Enemy>> enemyObjectPools;
 
@@ -15,11 +17,11 @@ public class EntitySummoners : MonoBehaviour
     {
         if(!isInitialized)
         {
+            enemyTransformPairs = new Dictionary<Transform, Enemy>();
             enemiesInGame = new List<Enemy>();
             enemyPrefabs = new Dictionary<int, GameObject>();
             enemiesInGameTransform = new List<Transform>();
             enemyObjectPools = new Dictionary<int, Queue<Enemy>>();
-
 
             EnemySummonData[] enemies = Resources.LoadAll<EnemySummonData>("Enemies");
             Debug.Log(enemies[0].name);
@@ -31,7 +33,6 @@ public class EntitySummoners : MonoBehaviour
             }
 
             isInitialized = true;
-
         }
         else
         {
@@ -66,10 +67,12 @@ public class EntitySummoners : MonoBehaviour
         {
             Debug.Log($"EntitySummoner : Enemy with ID of {enemyId} does not exists!");
             return null;
-        }
+        }   
 
-        enemiesInGameTransform.Add(SummonedEnemy.transform);
-        enemiesInGame.Add(SummonedEnemy);
+        if (!enemiesInGame.Contains(SummonedEnemy)) enemiesInGame.Add(SummonedEnemy);
+        if (!enemiesInGameTransform.Contains(SummonedEnemy.transform)) enemiesInGameTransform.Add(SummonedEnemy.transform);
+        if (!enemyTransformPairs.ContainsKey(SummonedEnemy.transform)) enemyTransformPairs.Add(SummonedEnemy.transform, SummonedEnemy);
+
         SummonedEnemy.ID = enemyId;
         return SummonedEnemy;
     }
@@ -78,6 +81,8 @@ public class EntitySummoners : MonoBehaviour
     {
         enemyObjectPools[enemyToRemove.ID].Enqueue(enemyToRemove);
         enemyToRemove.gameObject.SetActive(false);
+
+        enemyTransformPairs.Remove(enemyToRemove.transform);
         enemiesInGameTransform.Remove(enemyToRemove.transform);
         enemiesInGame.Remove(enemyToRemove);      
     }

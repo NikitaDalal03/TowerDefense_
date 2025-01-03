@@ -15,21 +15,45 @@ public class TowerBehavior : MonoBehaviour
 
     private float delay;
 
+    private IDamageMethod currentDamageMethodClass;
+
     void Start()
     {
+        currentDamageMethodClass = GetComponent<IDamageMethod>();
+        if(currentDamageMethodClass == null)
+        {
+            Debug.LogError("TOWER: No damage class attached to given tower!");
+        }
+        else
+        {
+            currentDamageMethodClass.Init(damage, fireRate);
+        }
+        
+        
         delay = 1 / fireRate;
     }
 
     void Update()
     {
-        
+            
     }
 
     public void Tick()
     {
-        if(target != null)
+        currentDamageMethodClass.DamageTick(target);
+
+        if (target != null)
         {
             towerPivote.transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(target != null)
+        {
+            Gizmos.DrawWireSphere(transform.position, range);
+            Gizmos.DrawLine(towerPivote.position, target.transform.position);
         }
     }
 }
