@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class FlameThrowerDamage : MonoBehaviour, IDamageMethod
 {
-    private float damage;
-    private float fireRate;
-    private float delay;
+    [SerializeField] private Collider fireTrigger;
+    [SerializeField] private ParticleSystem fireEffect;
+    
+   [HideInInspector] public float damage;
+   [HideInInspector] public float fireRate;
 
     public void Init(float damage, float fireRate)
     {
         this.damage = damage;
         this.fireRate = fireRate;
-        delay = 1f / fireRate;
     }
 
     public void DamageTick(Enemy target)
     {
-        if (target)
-        {
-            if (delay > 0f)
-            {
-                delay -= Time.deltaTime;
-                return;
-            }
+        fireTrigger.enabled = target != null;
 
-            delay = 1f / fireRate;
+        if(target)
+        {
+            if (!fireEffect.isPlaying) fireEffect.Play();
+            return;
         }
+
+        fireEffect.Stop();
     }
 
 }

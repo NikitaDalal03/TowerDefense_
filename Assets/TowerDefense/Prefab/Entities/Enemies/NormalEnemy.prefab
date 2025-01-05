@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1757072791369826049}
   - component: {fileID: 3265189574626650347}
   - component: {fileID: 4937071307918531988}
+  - component: {fileID: 2996347406729094742}
   m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
@@ -105,6 +106,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2996347406729094742
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052314396587446947}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3107582787957067159
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +145,7 @@ GameObject:
   - component: {fileID: 7632623667256659542}
   m_Layer: 6
   m_Name: NormalEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 128d272a2d69d4a9f971d9b8ef7f0d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rootPart: {fileID: 9031081355405396326}
   nodeIndex: 0
+  damageResistance: 1
   maxHealth: 5
   health: 0
   speed: 100

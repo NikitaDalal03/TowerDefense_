@@ -170,7 +170,8 @@ MonoBehaviour:
     m_Bits: 64
   target: {fileID: 7632623667256659542, guid: 9604728715550467f892f1c82fbc8a31, type: 3}
   towerPivote: {fileID: 1772775159630048684}
-  damage: 5
+  SummonCost: 350
+  damage: 3
   fireRate: 0.5
   range: 200
 --- !u!114 &2240733459268538669

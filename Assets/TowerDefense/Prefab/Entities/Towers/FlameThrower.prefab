@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7365000952131558041}
   - component: {fileID: 5016565450253867739}
+  - component: {fileID: 5329876597301699086}
   m_Layer: 7
   m_Name: FireTrigger
   m_TagString: Untagged
@@ -162,12 +163,25 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.8781838, y: 0.3, z: 0.3129136}
   m_Center: {x: 0.060969923, y: 0.000000008596821, z: 0.0063651516}
+--- !u!114 &5329876597301699086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906848557908374879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257ae19e51bba4f52a302a6a6f2c2e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseClass: {fileID: 7755091573818942007}
 --- !u!1 &4402477507261824029
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,8 +268,9 @@ MonoBehaviour:
     m_Bits: 64
   target: {fileID: 7632623667256659542, guid: 9604728715550467f892f1c82fbc8a31, type: 3}
   towerPivote: {fileID: 380545916362636879}
+  SummonCost: 400
   damage: 1
-  fireRate: 5
+  fireRate: 1
   range: 200
 --- !u!114 &7755091573818942007
 MonoBehaviour:
@@ -269,6 +284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0a378f368d3411488f0f60a5c77cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireTrigger: {fileID: 0}
+  fireEffect: {fileID: 0}
+  damage: 0
+  fireRate: 0
 --- !u!65 &2924525026333928828
 BoxCollider:
   m_ObjectHideFlags: 0

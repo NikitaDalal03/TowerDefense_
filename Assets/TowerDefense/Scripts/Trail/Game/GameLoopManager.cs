@@ -17,11 +17,14 @@ public class GameLoopManager : MonoBehaviour
     private static Queue<Enemy> enemiesToRemove;
     private static Queue<int> enemyIdsToSummon;
 
+    private PlayersStats playerStatistics;
+
     public Transform nodeParent;
     public bool loopShouldEnd;
 
     void Start()
     {
+        playerStatistics = FindAnyObjectByType<PlayersStats>();
         EffectsQueue = new Queue<ApplyEffectData>();
         DamageData = new Queue<EnemyDamageData>();
         towersInGame = new List<TowerBehavior>();
@@ -151,9 +154,14 @@ public class GameLoopManager : MonoBehaviour
                 {
                     EnemyDamageData currentDamageData = DamageData.Dequeue();
                     currentDamageData.targetedEnemy.health -= currentDamageData.totalDamage / currentDamageData.Resistance;
+                    playerStatistics.AddMoney((int)currentDamageData.totalDamage);
+
                     if(currentDamageData.targetedEnemy.health <= 0f)
                     {
-                        EnqueueEnemyToRemove(currentDamageData.targetedEnemy);
+                        if(!enemiesToRemove.Contains(currentDamageData.targetedEnemy))
+                        {
+                            EnqueueEnemyToRemove(currentDamageData.targetedEnemy);
+                        }                       
                     }
                 }
             }
@@ -222,7 +230,6 @@ public struct ApplyEffectData
 
     public Enemy EnemyToAffect;
     public Effect EffectToApply;
-
 
 }
 
