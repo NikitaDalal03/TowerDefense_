@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer()
     {
-        Vector3 moveVector = transform.TransformDirection(playerMouseInput);
+        Vector3 moveVector = transform.TransformDirection(playerMovementInput);
         if(Input.GetKey(KeyCode.Space))
         {
             velocity.y = 1f;
