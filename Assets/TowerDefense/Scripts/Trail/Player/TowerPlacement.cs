@@ -10,7 +10,6 @@ public class TowerPlacement : MonoBehaviour
     [SerializeField] private PlayersStats playerStatics;
     private GameObject currentPlacingTower;
 
-
     void Start()
     {
         
@@ -23,7 +22,7 @@ public class TowerPlacement : MonoBehaviour
             Ray camray = playerCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
 
-            if(Physics.Raycast(camray, out hitInfo, 100f, placementColliderMask))
+            if(Physics.Raycast(camray, out hitInfo, 500f, placementColliderMask))
             {
                 currentPlacingTower.transform.position = hitInfo.point;
             }
@@ -35,19 +34,23 @@ public class TowerPlacement : MonoBehaviour
                 return;
             }
 
+
             if(Input.GetMouseButtonDown(0) && hitInfo.collider.gameObject != null)
             {
                 if(!hitInfo.collider.gameObject.CompareTag("CantPlace"))
                 {
                     BoxCollider towerCollider = currentPlacingTower.GetComponent<BoxCollider>();
+                    Debug.Log("TowerCollider:" + towerCollider.name);
                     towerCollider.isTrigger = true;
 
                     Vector3 Center = currentPlacingTower.transform.position + towerCollider.center;
                     Vector3 halfExtents = towerCollider.size / 2f;
+                    Debug.Log("HalfExtents:" + halfExtents);
 
                     if (!Physics.CheckBox(Center, halfExtents, Quaternion.identity, placementCheckMask, QueryTriggerInteraction.Ignore)) //ignore all trigger colliders
                     {
                         TowerBehavior currentTowerBehavior = currentPlacingTower.GetComponent<TowerBehavior>();
+                        Debug.Log("currentTowerBehavior:" + currentTowerBehavior);
                         GameLoopManager.towersInGame.Add(currentTowerBehavior);
 
                         playerStatics.AddMoney(-currentTowerBehavior.SummonCost);
@@ -65,7 +68,7 @@ public class TowerPlacement : MonoBehaviour
         int towerSummonCost =  tower.GetComponent<TowerBehavior>().SummonCost;
         if (playerStatics.GetMoney() >= towerSummonCost)
         {
-             currentPlacingTower = Instantiate(tower, Vector3.zero, Quaternion.identity);
+            currentPlacingTower = Instantiate(tower, Vector3.zero, Quaternion.identity);
         }
         else
         {

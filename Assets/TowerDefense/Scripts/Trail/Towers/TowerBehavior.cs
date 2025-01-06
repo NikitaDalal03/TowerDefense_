@@ -28,9 +28,9 @@ public class TowerBehavior : MonoBehaviour
         else
         {
             currentDamageMethodClass.Init(damage, fireRate);
+            Debug.Log("currentDamageMethodClass");
         }
-        
-        
+               
         delay = 1 / fireRate;
     }
 
@@ -41,10 +41,12 @@ public class TowerBehavior : MonoBehaviour
 
     public void Tick()
     {
+        Debug.Log("Under Tick Method");
         currentDamageMethodClass.DamageTick(target);
 
         if (target != null)
         {
+            Debug.Log("TowerPivote:" +towerPivote);
             towerPivote.transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
         }
     }

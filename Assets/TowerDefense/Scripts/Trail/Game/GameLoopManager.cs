@@ -230,7 +230,6 @@ public struct ApplyEffectData
 
     public Enemy EnemyToAffect;
     public Effect EffectToApply;
-
 }
 
 public struct EnemyDamageData
@@ -245,7 +244,6 @@ public struct EnemyDamageData
     public Enemy targetedEnemy;
     public float totalDamage;
     public float Resistance;
-
 }
 
 public struct MovesEnemiesJob : IJobParallelForTransform
@@ -264,17 +262,15 @@ public struct MovesEnemiesJob : IJobParallelForTransform
 
     public void Execute(int index, TransformAccess transform)
     {
-        if(nodeIndex[index] < nodepositions.Length)
+        if (nodeIndex[index] < nodepositions.Length)
         {
-           
-        }
+            Vector3 PositionToMoveTo = nodepositions[nodeIndex[index]];
+            transform.position = Vector3.MoveTowards(transform.position, PositionToMoveTo, EnemySpeed[index] * deltaTime);
 
-        Vector3 PositionToMoveTo = nodepositions[nodeIndex[index]];
-        transform.position = Vector3.MoveTowards(transform.position, PositionToMoveTo, EnemySpeed[index] * deltaTime);
-
-        if(transform.position == PositionToMoveTo)
-        {
-            nodeIndex[index]++;
-        }                            
+            if (transform.position == PositionToMoveTo)
+            {
+                nodeIndex[index]++;
+            }
+        }                                 
     }
 }

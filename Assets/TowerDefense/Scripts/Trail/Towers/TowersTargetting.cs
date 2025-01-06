@@ -10,7 +10,9 @@ public class TowersTargetting
     {
         First,
         Last,   
-        Close
+        Close,
+        Strong,
+        Weak
     }
 
     public static Enemy GetTarget(TowerBehavior currenTower, TargetType TargetMethod)
@@ -26,7 +28,6 @@ public class TowersTargetting
         {
             Enemy currentEnemy = enemiesInRange[i].transform.parent.GetComponent<Enemy>();
             int EnemyIndexInList = EntitySummoners.enemiesInGame.FindIndex(x => x == currentEnemy);
-
 
             enemiesToCalculate[i] = new EnemyData(currentEnemy.transform.position, currentEnemy.nodeIndex, currentEnemy.health, EnemyIndexInList);
         }
@@ -60,7 +61,6 @@ public class TowersTargetting
 
             case 4: //Weak
                 goto case 0;
-
         }
 
         JobHandle dependency = new JobHandle();
@@ -125,6 +125,7 @@ public class TowersTargetting
                     {
                         _EnemyToIndex[0] = index;
                         CompareValue = currentEnemyDistanceToEnd;
+                        Debug.Log("CurrentEnemyDistanceToEnd:" + currentEnemyDistanceToEnd);
                     }
                     break;
 
@@ -161,7 +162,6 @@ public class TowersTargetting
                         CompareValue = _EnemiesToCalculate[index].Health;
                     }
                     break;
-
             }
         }
 

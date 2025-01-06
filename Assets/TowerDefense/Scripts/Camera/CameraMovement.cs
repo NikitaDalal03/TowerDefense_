@@ -45,12 +45,10 @@ public class CameraMovement : MonoBehaviour
             direction += Vector3.right;
         }
 
-
         if (mousePosition.y > screenHeight - screenEdgeBuffer)
         {
             direction += Vector3.forward;
         }
-
 
         if (mousePosition.y < screenEdgeBuffer)
         {

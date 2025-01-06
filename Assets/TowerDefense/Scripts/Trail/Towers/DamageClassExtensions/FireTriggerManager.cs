@@ -12,8 +12,6 @@ public class FireTriggerManager : MonoBehaviour
             Effect flameEffect = new Effect("Fire", baseClass.fireRate, baseClass.damage, 5f);
             ApplyEffectData effectData = new ApplyEffectData(EntitySummoners.enemyTransformPairs[other.transform.parent], flameEffect);
             GameLoopManager.EnqueueEffectsToApply(effectData);
-
-
         }
     }
 }

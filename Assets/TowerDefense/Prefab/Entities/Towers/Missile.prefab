@@ -146,8 +146,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -203.9, y: 39.4, z: -187.4}
-  m_LocalScale: {x: 80, y: 80, z: 80}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5598547391873136402}
   - {fileID: 1772775159630048684}
@@ -191,7 +191,7 @@ MonoBehaviour:
     m_Bits: 64
   missileSystem: {fileID: 8294435407388802434}
   towerHead: {fileID: 1772775159630048684}
-  damage: 0
+  damage: 5
 --- !u!65 &-7364667065005144860
 BoxCollider:
   m_ObjectHideFlags: 0

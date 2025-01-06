@@ -7,8 +7,8 @@ public class FlameThrowerDamage : MonoBehaviour, IDamageMethod
     [SerializeField] private Collider fireTrigger;
     [SerializeField] private ParticleSystem fireEffect;
     
-   [HideInInspector] public float damage;
-   [HideInInspector] public float fireRate;
+    [HideInInspector] public float damage;
+    [HideInInspector] public float fireRate;
 
     public void Init(float damage, float fireRate)
     {
@@ -25,7 +25,6 @@ public class FlameThrowerDamage : MonoBehaviour, IDamageMethod
             if (!fireEffect.isPlaying) fireEffect.Play();
             return;
         }
-
         fireEffect.Stop();
     }
 
