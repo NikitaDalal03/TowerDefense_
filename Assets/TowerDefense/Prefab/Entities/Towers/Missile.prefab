@@ -173,7 +173,7 @@ MonoBehaviour:
   SummonCost: 350
   damage: 3
   fireRate: 0.5
-  range: 200
+  range: 150
 --- !u!114 &2240733459268538669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7121169908466480329, guid: 279d90c1aa2c5d0498c08656a0438a72, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.487
       objectReference: {fileID: 0}
     - target: {fileID: 7121169908466480329, guid: 279d90c1aa2c5d0498c08656a0438a72, type: 3}
       propertyPath: m_LocalRotation.w

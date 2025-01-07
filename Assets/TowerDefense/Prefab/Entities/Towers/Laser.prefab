@@ -56,7 +56,7 @@ MonoBehaviour:
   SummonCost: 600
   damage: 0.2
   fireRate: 25
-  range: 200
+  range: 150
 --- !u!114 &7891084604137377425
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ using UnityEngine.Jobs;
 
 public class GameLoopManager : MonoBehaviour
 {
-
     public static List<TowerBehavior> towersInGame;
     public static Vector3[] nodePositions;
     public static float[] nodeDistances;
@@ -47,7 +46,6 @@ public class GameLoopManager : MonoBehaviour
         StartCoroutine(GameLoop());
         InvokeRepeating("SummonTest", 0f, 1f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
-
     }
 
     void SummonTest()
@@ -118,7 +116,7 @@ public class GameLoopManager : MonoBehaviour
             //tick towers
             foreach(TowerBehavior tower in towersInGame)
             {
-                tower.target = TowersTargetting.GetTarget(tower, TowersTargetting.TargetType.First);
+                tower.target = TowersTargetting.GetTarget(tower, TowersTargetting.TargetType.Close);
                 tower.Tick();
             }
 

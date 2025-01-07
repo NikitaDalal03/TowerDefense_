@@ -56,7 +56,7 @@ MonoBehaviour:
   SummonCost: 100
   damage: 1
   fireRate: 5
-  range: 200
+  range: 150
 --- !u!114 &473362869874749243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,8 +88,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1681588, y: 1.1213068, z: 0.82551384}
-  m_Center: {x: -0.14600825, y: 0.5597016, z: 0.00006971359}
+  m_Size: {x: 0.9153544, y: 1.1213068, z: 1.0869712}
+  m_Center: {x: 0.041359555, y: 0.5597016, z: 0.13079777}
 --- !u!1 &4436821705857800760
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,13 +117,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4436821705857800760}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.5627, y: 0.0004, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6838364364400790222}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &1636207834324600559
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -221,14 +221,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6173608823760932980}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5295028265579382871}
   m_Father: {fileID: 6991969622815064670}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!33 &7586625549179782507
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7744034080794116427}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071067, y: -0.000000030908616, z: 0.000000030908623, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.071, y: 0.711, z: 0.006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

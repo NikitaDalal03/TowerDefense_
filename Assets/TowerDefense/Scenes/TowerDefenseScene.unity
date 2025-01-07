@@ -1251,7 +1251,7 @@ MonoBehaviour:
   playerCamera: {fileID: 963194228}
   controller: {fileID: 318672519}
   speed: 100
-  sensitivity: 100
+  sensitivity: 5
 --- !u!143 &318672519
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4052,7 +4052,7 @@ GameObject:
   - component: {fileID: 948475335}
   m_Layer: 0
   m_Name: BasePlate
-  m_TagString: CanPlace
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

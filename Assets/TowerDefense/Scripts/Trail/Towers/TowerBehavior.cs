@@ -36,7 +36,7 @@ public class TowerBehavior : MonoBehaviour
 
     void Update()
     {
-            
+
     }
 
     public void Tick()
