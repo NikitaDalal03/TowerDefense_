@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1772775159630048684}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 352245651519233328}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.055, y: 0.63, z: 0.068}
+  m_LocalPosition: {x: 0.055, y: 0.499, z: 0.068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6391547638847337451}
   - component: {fileID: 6955689160485337108}
   - component: {fileID: 578590630369447900}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,9 +129,9 @@ GameObject:
   - component: {fileID: 2830568034279621925}
   - component: {fileID: 2240733459268538669}
   - component: {fileID: -7364667065005144860}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Missile
-  m_TagString: Untagged
+  m_TagString: CantPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,9 +225,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Missile
       objectReference: {fileID: 0}
+    - target: {fileID: 1204896475304053468, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.22371295
+      value: -0.22
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -235,23 +239,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.01692678
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.50008726
+      value: 0.5523147
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.49991274
+      value: 0.44152972
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.49991274
+      value: -0.44152972
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.50008726
+      value: -0.5523147
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -259,11 +263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -77.279
       objectReference: {fileID: 0}
     - target: {fileID: 6346178433994488895, guid: 15bb3b9f50cfa6149a4db97303abbb7d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -367,6 +371,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 774134bbf3128064d9e7f00743855a18, type: 3}
       propertyPath: m_Name
       value: TowerStand
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 774134bbf3128064d9e7f00743855a18, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -491,23 +499,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.50008726
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.49991274
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.49991274
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.50008726
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.98
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -515,7 +523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -524,6 +532,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d0a54341ca0828545aa759434c76b886, type: 3}
       propertyPath: m_Name
       value: TowerHead(Explosives)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d0a54341ca0828545aa759434c76b886, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

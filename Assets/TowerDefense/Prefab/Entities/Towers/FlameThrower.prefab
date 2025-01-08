@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4570468442764890327}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FireTriggerPivote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1873935484224457989}
   - component: {fileID: 1965870579780060029}
   - component: {fileID: 8703859882043110027}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 7365000952131558041}
   - component: {fileID: 5016565450253867739}
   - component: {fileID: 5329876597301699086}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: FireTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,13 +141,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2906848557908374879}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.492, y: -0, z: 0}
+  m_LocalRotation: {x: -0.000000029802322, y: 0.15383628, z: -0.000000029802322, w: 0.9880964}
+  m_LocalPosition: {x: -0.373, y: -0, z: 0.136}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4570468442764890327}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 17.699, z: 0}
 --- !u!65 &5016565450253867739
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,8 +167,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8781838, y: 0.3, z: 0.3129136}
-  m_Center: {x: 0.060969923, y: 0.000000008596821, z: 0.0063651516}
+  m_Size: {x: 1.2316897, y: 0.3, z: 0.3129136}
+  m_Center: {x: -0.11578292, y: 0.000000022068845, z: 0.0063651516}
 --- !u!114 &5329876597301699086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 380545916362636879}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 4402477507261824029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.686, z: 0}
+  m_LocalPosition: {x: 0, y: 0.543, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -227,9 +227,9 @@ GameObject:
   - component: {fileID: 5070803718954238918}
   - component: {fileID: 7755091573818942007}
   - component: {fileID: 2924525026333928828}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FlameThrower
-  m_TagString: Untagged
+  m_TagString: CantPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -268,8 +268,8 @@ MonoBehaviour:
     m_Bits: 64
   target: {fileID: 7632623667256659542, guid: 9604728715550467f892f1c82fbc8a31, type: 3}
   towerPivote: {fileID: 380545916362636879}
-  SummonCost: 400
-  damage: 1
+  SummonCost: 100
+  damage: 5
   fireRate: 1
   range: 150
 --- !u!114 &7755091573818942007
@@ -343,7 +343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8306428187704172982, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.98544943
       objectReference: {fileID: 0}
     - target: {fileID: 8306428187704172982, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -351,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8306428187704172982, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.1699692
       objectReference: {fileID: 0}
     - target: {fileID: 8306428187704172982, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -359,11 +359,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8306428187704172982, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8306428187704172982, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 19.572
       objectReference: {fileID: 0}
     - target: {fileID: 8306428187704172982, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -372,6 +372,10 @@ PrefabInstance:
     - target: {fileID: 9111521058580799189, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
       propertyPath: m_Name
       value: FireEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 9111521058580799189, guid: e28e4099b0ebfc044a65e78cf2800d2b, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -452,6 +456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerStand
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 774134bbf3128064d9e7f00743855a18, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -496,31 +504,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.50008726
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.49991274
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.50008726
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.49991274
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.98
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -529,6 +537,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
       propertyPath: m_Name
       value: TowerHead(Flamethrower)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 48885240c6e115f4b8533e67b3eb7abf, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -14,6 +14,12 @@ public class PlayersStats : MonoBehaviour
         MoneyDisplayText.SetText($"${StartingMoney}");
     }
 
+    public bool HasEnoughMoney(float amount)
+    {
+        bool result = currentMoney >= amount;
+        Debug.Log($"HasEnoughMoney: {currentMoney} >= {amount} ? {result}");
+        return result;
+    }
     public void AddMoney(int MoneyToAdd)
     {
         currentMoney += MoneyToAdd;

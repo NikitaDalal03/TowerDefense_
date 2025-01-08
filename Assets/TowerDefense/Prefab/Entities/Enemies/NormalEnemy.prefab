@@ -181,7 +181,7 @@ MonoBehaviour:
   rootPart: {fileID: 9031081355405396326}
   nodeIndex: 0
   damageResistance: 1
-  maxHealth: 5
+  maxHealth: 10
   health: 0
   speed: 100
   ID: 0

@@ -7,7 +7,9 @@ using UnityEngine.Jobs;
 
 public class GameLoopManager : MonoBehaviour
 {
-    public static List<TowerBehavior> towersInGame;
+    public static GameLoopManager Instance { get; private set; }
+
+    public List<TowerBehavior> towersInGame = new List<TowerBehavior>();
     public static Vector3[] nodePositions;
     public static float[] nodeDistances;
 
@@ -20,7 +22,18 @@ public class GameLoopManager : MonoBehaviour
 
     public Transform nodeParent;
     public bool loopShouldEnd;
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         playerStatistics = FindAnyObjectByType<PlayersStats>();
@@ -32,7 +45,7 @@ public class GameLoopManager : MonoBehaviour
         EntitySummoners.Init();
 
         nodePositions = new Vector3[nodeParent.childCount];
-        for(int i = 0; i < nodePositions.Length; i++)
+        for (int i = 0; i < nodePositions.Length; i++)
         {
             nodePositions[i] = nodeParent.GetChild(i).position;
         }
@@ -40,7 +53,7 @@ public class GameLoopManager : MonoBehaviour
         nodeDistances = new float[nodePositions.Length - 1];
         for (int i = 0; i < nodeDistances.Length; i++)
         {
-            nodeDistances[i] = Vector3.Distance(nodePositions[i], nodePositions[i+1]);
+            nodeDistances[i] = Vector3.Distance(nodePositions[i], nodePositions[i + 1]);
         }
 
         StartCoroutine(GameLoop());
@@ -63,14 +76,14 @@ public class GameLoopManager : MonoBehaviour
 
     IEnumerator GameLoop()
     {
-        while(loopShouldEnd == false)
+        while (loopShouldEnd == false)
         {
             //spawn enemies
-            if(enemyIdsToSummon.Count > 0)
+            if (enemyIdsToSummon.Count > 0)
             {
-                for(int i = 0; i < enemyIdsToSummon.Count; i++)
+                for (int i = 0; i < enemyIdsToSummon.Count; i++)
                 {
-                    EntitySummoners.SummonEnemy(enemyIdsToSummon.Dequeue()); 
+                    EntitySummoners.SummonEnemy(enemyIdsToSummon.Dequeue());
                 }
             }
             //spawn towers
@@ -78,10 +91,10 @@ public class GameLoopManager : MonoBehaviour
             //move enemies
             NativeArray<Vector3> nodesToUse = new NativeArray<Vector3>(nodePositions, Allocator.TempJob);
             NativeArray<float> enemySpeeds = new NativeArray<float>(EntitySummoners.enemiesInGame.Count, Allocator.TempJob);
-            NativeArray<int> nodeIndices = new NativeArray<int>(EntitySummoners.enemiesInGame.Count, Allocator.TempJob);           
+            NativeArray<int> nodeIndices = new NativeArray<int>(EntitySummoners.enemiesInGame.Count, Allocator.TempJob);
             TransformAccessArray EnemyAccess = new TransformAccessArray(EntitySummoners.enemiesInGameTransform.ToArray(), 2);
 
-            for(int i = 0; i< EntitySummoners.enemiesInGame.Count; i++)
+            for (int i = 0; i < EntitySummoners.enemiesInGame.Count; i++)
             {
                 enemySpeeds[i] = EntitySummoners.enemiesInGame[i].speed;
                 nodeIndices[i] = EntitySummoners.enemiesInGame[i].nodeIndex;
@@ -98,11 +111,11 @@ public class GameLoopManager : MonoBehaviour
             JobHandle MoveJobHandle = MoveJob.Schedule(EnemyAccess);
             MoveJobHandle.Complete();
 
-            for(int i = 0; i < EntitySummoners.enemiesInGame.Count; i++)
+            for (int i = 0; i < EntitySummoners.enemiesInGame.Count; i++)
             {
                 EntitySummoners.enemiesInGame[i].nodeIndex = nodeIndices[i];
 
-                if(EntitySummoners.enemiesInGame[i].nodeIndex == nodePositions.Length)
+                if (EntitySummoners.enemiesInGame[i].nodeIndex == nodePositions.Length)
                 {
                     EnqueueEnemyToRemove(EntitySummoners.enemiesInGame[i]);
                 }
@@ -114,7 +127,7 @@ public class GameLoopManager : MonoBehaviour
             nodesToUse.Dispose();
 
             //tick towers
-            foreach(TowerBehavior tower in towersInGame)
+            foreach (TowerBehavior tower in towersInGame)
             {
                 tower.target = TowersTargetting.GetTarget(tower, TowersTargetting.TargetType.Close);
                 tower.Tick();
@@ -140,7 +153,7 @@ public class GameLoopManager : MonoBehaviour
             }
 
             //tick enemies
-            foreach(Enemy currentEnemy in EntitySummoners.enemiesInGame)
+            foreach (Enemy currentEnemy in EntitySummoners.enemiesInGame)
             {
                 currentEnemy.Tick();
             }
@@ -154,12 +167,12 @@ public class GameLoopManager : MonoBehaviour
                     currentDamageData.targetedEnemy.health -= currentDamageData.totalDamage / currentDamageData.Resistance;
                     playerStatistics.AddMoney((int)currentDamageData.totalDamage);
 
-                    if(currentDamageData.targetedEnemy.health <= 0f)
+                    if (currentDamageData.targetedEnemy.health <= 0f)
                     {
-                        if(!enemiesToRemove.Contains(currentDamageData.targetedEnemy))
+                        if (!enemiesToRemove.Contains(currentDamageData.targetedEnemy))
                         {
                             EnqueueEnemyToRemove(currentDamageData.targetedEnemy);
-                        }                       
+                        }
                     }
                 }
             }
@@ -202,7 +215,7 @@ public class GameLoopManager : MonoBehaviour
 
 public class Effect
 {
-    public Effect(string effectName, float damageRate, float damage, float expireTime )
+    public Effect(string effectName, float damageRate, float damage, float expireTime)
     {
         ExpireTime = expireTime;
         EffectName = effectName;
@@ -269,6 +282,6 @@ public struct MovesEnemiesJob : IJobParallelForTransform
             {
                 nodeIndex[index]++;
             }
-        }                                 
+        }
     }
 }

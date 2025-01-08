@@ -15,6 +15,11 @@ public class Enemy : MonoBehaviour
     public float speed;
     public int ID;
 
+    private bool hasReachedEnd = false;
+
+    public delegate void EnemyReachedEndDelegate();
+    public static event EnemyReachedEndDelegate OnEnemyReachedEnd; 
+
     public void Init()
     {
         ActiveEffects = new List<Effect>();
@@ -25,11 +30,11 @@ public class Enemy : MonoBehaviour
 
     public void Tick()
     {
-        for(int i = 0; i < ActiveEffects.Count; i++)
+        for (int i = 0; i < ActiveEffects.Count; i++)
         {
-            if(ActiveEffects[i].ExpireTime  > 0f)
+            if (ActiveEffects[i].ExpireTime > 0f)
             {
-                if(ActiveEffects[i].DamageDelay > 0f)
+                if (ActiveEffects[i].DamageDelay > 0f)
                 {
                     ActiveEffects[i].DamageDelay -= Time.deltaTime;
                 }
@@ -45,5 +50,12 @@ public class Enemy : MonoBehaviour
         }
 
         ActiveEffects.RemoveAll(x => x.ExpireTime <= 0f);
+
+        // Check if enemy has reached the last waypoint
+        if (!hasReachedEnd && nodeIndex >= GameLoopManager.nodePositions.Length)
+        {
+            hasReachedEnd = true;  
+            OnEnemyReachedEnd?.Invoke(); 
+        }
     }
 }
