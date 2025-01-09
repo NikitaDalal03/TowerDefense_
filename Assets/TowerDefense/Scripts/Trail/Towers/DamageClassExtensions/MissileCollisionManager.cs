@@ -14,7 +14,6 @@ public class MissileCollisionManager : MonoBehaviour
     public void Start()
     {
         missileCollision = new List<ParticleCollisionEvent>();
-
     }
 
     private void OnParticleCollision(GameObject other)

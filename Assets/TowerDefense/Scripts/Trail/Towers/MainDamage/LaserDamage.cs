@@ -24,7 +24,7 @@ public class LaserDamage : MonoBehaviour, IDamageMethod
         {
             laserRenderer.enabled = true;
             laserRenderer.SetPosition(0, laserPivot.position);
-            laserRenderer.SetPosition(0, target.rootPart.position);
+            laserRenderer.SetPosition(1, target.rootPart.position);
 
             if (delay > 0f)
             {

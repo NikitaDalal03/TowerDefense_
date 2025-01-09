@@ -4,15 +4,14 @@ public class TowerPlacement : MonoBehaviour
 {
     [Header("Camera and Layers")]
     public Camera playerCamera;
-    public LayerMask placementLayerMask;  // Layers where towers can be placed
-    public LayerMask collisionLayerMask;  // Layers to check for overlapping towers
+    public LayerMask placementLayerMask;
+    public LayerMask collisionLayerMask;
 
     [Header("Player Stats")]
     public PlayersStats playerStats;
 
     private GameObject currentPlacingTower;
     private bool isPlacing = false;
-
 
     public void SetTowerToPlace(GameObject towerPrefab)
     {
@@ -88,25 +87,25 @@ public class TowerPlacement : MonoBehaviour
                 bool isOverlap = false;
 
                 bool hasEnoughMoney = playerStats != null && playerStats.HasEnoughMoney(GetSelectedTowerCost());
-                bool canPlace = hasValidTag;
+                bool canPlace = hasValidTag && hasEnoughMoney;
 
-                // Visual feedback
+                // Visual feedback for valid placement
                 Renderer renderer = currentPlacingTower.GetComponent<Renderer>();
                 if (renderer != null)
                 {
                     renderer.material.color = canPlace ? Color.green : Color.red;
                 }
 
-                // Debug Logs for Placement Validation
+                // Placement validation 
                 Debug.Log($"Placement Validation - HasValidTag: {hasValidTag}, IsOverlap: {isOverlap}, HasEnoughMoney: {hasEnoughMoney}, CanPlace: {canPlace}");
 
-                // Place tower on left mouse click
+                // Place tower on left mouse
                 if (Input.GetMouseButtonDown(0) && canPlace)
                 {
                     PlaceTower();
                 }
 
-                // Cancel placement with right mouse click or Escape key
+                // Cancel placement right mouse or Escape 
                 if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
                 {
                     CancelPlacement();
@@ -114,7 +113,6 @@ public class TowerPlacement : MonoBehaviour
             }
             else
             {
-                // Debug Log for Failed Raycast
                 Debug.Log("HandlePlacement: Raycast did not hit a valid placement area.");
             }
         }
@@ -141,8 +139,17 @@ public class TowerPlacement : MonoBehaviour
             if (GameLoopManager.Instance != null)
             {
                 GameLoopManager.Instance.towersInGame.Add(towerBehavior);
-                playerStats.AddMoney(-towerBehavior.SummonCost);
-                Debug.Log($"PlaceTower: Placed {towerBehavior.gameObject.name} for {towerBehavior.SummonCost} coins.");
+
+                // Deduct the cost from the player's money only if the tower is successfully placed
+                if (playerStats.SubtractMoney(towerBehavior.SummonCost))
+                {
+                    Debug.Log($"PlaceTower: Placed {towerBehavior.gameObject.name} for {towerBehavior.SummonCost} coins.");
+                }
+                else
+                {
+                    Debug.LogWarning("PlaceTower failed: Not enough money.");
+                    CancelPlacement(); 
+                }
             }
             else
             {

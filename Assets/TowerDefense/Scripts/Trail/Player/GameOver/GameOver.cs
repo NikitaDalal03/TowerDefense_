@@ -8,7 +8,7 @@ public class GameOver : MonoBehaviour
 {
     public static GameOver Instance { get; private set; }
 
-    public int maxEnemiesAllowed = 20;  
+    public int playerHealth = 20;  
     //private int remainingEnemies;  
     public TextMeshProUGUI countText;  
     public GameObject gameOverScreen;  
@@ -24,7 +24,6 @@ public class GameOver : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         //remainingEnemies = maxEnemiesAllowed; 
     }
 
@@ -41,22 +40,22 @@ public class GameOver : MonoBehaviour
     private void Start()
     {
         gameOverScreen.SetActive(false);
-        countText.text = $"{maxEnemiesAllowed}";
+        countText.text = $"{playerHealth}";
     }
 
     private void OnEnemyReachedEnd()
     {
         //remainingEnemies--;
-        maxEnemiesAllowed--;
+        playerHealth--;
 
         if (countText != null)
         {
             //countText.text = $"{remainingEnemies}/{maxEnemiesAllowed}";
-            countText.text = $"{maxEnemiesAllowed}";
+            countText.text = $"{playerHealth}";
         }
 
 
-        if (maxEnemiesAllowed <= 0)
+        if (playerHealth <= 0)
         {
             GameOverLogic();
         }
