@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    [SerializeField] private Slider healthBar; 
+    [SerializeField] private GameObject healthBarPrefab;  
     [SerializeField] private Vector3 offset;  
 
+    private Slider healthBar;
     private Enemy enemy;
 
     private void Awake()
@@ -17,31 +18,69 @@ public class EnemyHealthBar : MonoBehaviour
             Debug.LogError("EnemyHealthBar: No Enemy component found on this GameObject.");
         }
 
-        if (healthBar == null)
+        if (healthBarPrefab == null)
         {
-            Debug.LogError("EnemyHealthBar: No health bar (Slider) assigned.");
+            Debug.LogError("EnemyHealthBar: No health bar prefab assigned.");
         }
     }
 
     private void Start()
     {
-        if (enemy != null)
+        if (enemy != null && healthBarPrefab != null)
         {
+            // Instantiate the health bar prefab
+            GameObject healthBarObject = Instantiate(healthBarPrefab, transform.position, Quaternion.identity, transform);
+            healthBar = healthBarObject.GetComponent<Slider>();
+
+            // Ensure the health bar exists and is properly assigned
+            if (healthBar == null)
+            {
+                Debug.LogError("EnemyHealthBar: Health bar prefab does not contain a Slider component.");
+                return;
+            }
+
+            // Set the health bar's max value and initial value
             healthBar.maxValue = enemy.maxHealth;
-            healthBar.value = enemy.maxHealth;
+            healthBar.value = enemy.health;
+
+            // Subscribe to the health change event
+            //enemy.OnHealthChanged += UpdateHealthBar;
         }
     }
 
-    public void UpdateHealthBar(float newHealth)
+    private void Update()
     {
-        healthBar.value = newHealth;
+        if (enemy != null && healthBar != null)
+        {
+            // Update the health bar position to follow the enemy
+            UpdatePosition();
+        }
     }
 
-    public void UpdatePosition()
+    private void UpdateHealthBar(float newHealth)
+    {
+        // Update the health bar slider value when the enemy's health changes
+        if (healthBar != null)
+        {
+            healthBar.value = newHealth;
+        }
+    }
+
+    private void UpdatePosition()
     {
         if (healthBar != null)
         {
+            // Update the health bar's position to follow the enemy with an offset
             healthBar.transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + offset);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (enemy != null)
+        {
+            // Unsubscribe from the health change event when the script is destroyed
+            //enemy.OnHealthChanged -= UpdateHealthBar;
         }
     }
 }

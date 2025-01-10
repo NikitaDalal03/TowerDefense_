@@ -54,7 +54,7 @@ MonoBehaviour:
   target: {fileID: 7632623667256659542, guid: 9604728715550467f892f1c82fbc8a31, type: 3}
   towerPivote: {fileID: 7614695414637668805}
   SummonCost: 600
-  damage: 5
+  damage: 20
   fireRate: 25
   range: 150
 --- !u!114 &7891084604137377425

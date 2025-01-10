@@ -84,6 +84,6 @@ public class EntitySummoners : MonoBehaviour
 
         enemyTransformPairs.Remove(enemyToRemove.transform);
         enemiesInGameTransform.Remove(enemyToRemove.transform);
-        enemiesInGame.Remove(enemyToRemove);      
+        enemiesInGame.Remove(enemyToRemove);
     }
 }

@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     private bool hasReachedEnd = false;
 
     public delegate void EnemyReachedEndDelegate();
-    public static event EnemyReachedEndDelegate OnEnemyReachedEnd; 
+    public static event EnemyReachedEndDelegate OnEnemyReachedEnd;
 
     public void Init()
     {
@@ -54,8 +54,8 @@ public class Enemy : MonoBehaviour
         // Check if enemy has reached the last waypoint
         if (!hasReachedEnd && nodeIndex >= GameLoopManager.nodePositions.Length)
         {
-            hasReachedEnd = true;  
-            OnEnemyReachedEnd?.Invoke(); 
+            hasReachedEnd = true;
+            OnEnemyReachedEnd?.Invoke();
         }
     }
 }
