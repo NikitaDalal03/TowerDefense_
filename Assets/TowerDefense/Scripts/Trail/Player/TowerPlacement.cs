@@ -17,13 +17,13 @@ public class TowerPlacement : MonoBehaviour
     {
         if (towerPrefab == null)
         {
-            Debug.LogWarning("SetTowerToPlace failed: Tower prefab is null.");
+            //Debug.LogWarning("SetTowerToPlace failed: Tower prefab is null.");
             return;
         }
 
         if (isPlacing)
         {
-            Debug.Log("SetTowerToPlace: Canceling previous placement.");
+            //Debug.Log("SetTowerToPlace: Canceling previous placement.");
             CancelPlacement();
         }
 
@@ -37,7 +37,7 @@ public class TowerPlacement : MonoBehaviour
             towerRenderer.material.color = Color.yellow;
         }
 
-        Debug.Log("SetTowerToPlace: Placing " + towerPrefab.name);
+        //Debug.Log("SetTowerToPlace: Placing " + towerPrefab.name);
     }
 
     void Update()
@@ -58,13 +58,13 @@ public class TowerPlacement : MonoBehaviour
 
                 if (hitCollider == null)
                 {
-                    Debug.LogWarning("HandlePlacement: Hit collider is null.");
+                    //Debug.LogWarning("HandlePlacement: Hit collider is null.");
                     return;
                 }
 
                 if (!hitCollider.CompareTag("CanPlace"))
                 {
-                    Debug.LogWarning("HandlePlacement: Hit object is not tagged with 'CanPlace'.");
+                    //Debug.LogWarning("HandlePlacement: Hit object is not tagged with 'CanPlace'.");
                     return;
                 }
 
@@ -73,7 +73,7 @@ public class TowerPlacement : MonoBehaviour
 
                 if (towerCollider == null)
                 {
-                    Debug.LogWarning("HandlePlacement: Tower prefab is missing a BoxCollider.");
+                    //Debug.LogWarning("HandlePlacement: Tower prefab is missing a BoxCollider.");
                     return;
                 }
 

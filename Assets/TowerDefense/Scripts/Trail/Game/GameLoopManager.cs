@@ -17,11 +17,14 @@ public class GameLoopManager : MonoBehaviour
     private static Queue<EnemyDamageData> DamageData;
     private static Queue<Enemy> enemiesToRemove;
     private static Queue<int> enemyIdsToSummon;
+    private static Queue<EnemyGroup> enemyGroupsToSummon;
 
     private PlayersStats playerStatistics;
 
     public Transform nodeParent;
     public bool loopShouldEnd;
+
+
     private void Awake()
     {
         if (Instance == null)
@@ -34,6 +37,8 @@ public class GameLoopManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
     void Start()
     {
         playerStatistics = FindAnyObjectByType<PlayersStats>();
@@ -42,6 +47,7 @@ public class GameLoopManager : MonoBehaviour
         towersInGame = new List<TowerBehavior>();
         enemyIdsToSummon = new Queue<int>();
         enemiesToRemove = new Queue<Enemy>();
+        enemyGroupsToSummon = new Queue<EnemyGroup>();
         EntitySummoners.Init();
 
         nodePositions = new Vector3[nodeParent.childCount];
@@ -57,13 +63,17 @@ public class GameLoopManager : MonoBehaviour
         }
 
         StartCoroutine(GameLoop());
-        InvokeRepeating("SummonTest", 0f, 1f);
+        InvokeRepeating("SummonTest", 0f, 5f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
     }
 
     void SummonTest()
     {
-        EnqueueEnemyIDToSummon(1);
+        //EnqueueEnemyIDToSummon(1);
+        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Basic, 5));
+        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Fast, 5));
+        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Tank, 5));
+        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Boss, 1));
     }
 
     //void RemoveTest()
@@ -79,11 +89,12 @@ public class GameLoopManager : MonoBehaviour
         while (loopShouldEnd == false)
         {
             //spawn enemies
-            if (enemyIdsToSummon.Count > 0)
+            if (enemyGroupsToSummon.Count > 0)
             {
-                for (int i = 0; i < enemyIdsToSummon.Count; i++)
+                EnemyGroup currentGroup = enemyGroupsToSummon.Dequeue();
+                for (int i = 0; i < currentGroup.count; i++)
                 {
-                    EntitySummoners.SummonEnemy(enemyIdsToSummon.Dequeue());
+                    EntitySummoners.SummonEnemy(currentGroup.enemyType);
                 }
             }
             //spawn towers
@@ -165,17 +176,18 @@ public class GameLoopManager : MonoBehaviour
                 {
                     EnemyDamageData currentDamageData = DamageData.Dequeue();
                     currentDamageData.targetedEnemy.health -= currentDamageData.totalDamage / currentDamageData.Resistance;
-                    playerStatistics.AddMoney((int)currentDamageData.totalDamage);
 
                     if (currentDamageData.targetedEnemy.health <= 0f)
                     {
                         if (!enemiesToRemove.Contains(currentDamageData.targetedEnemy))
                         {
                             EnqueueEnemyToRemove(currentDamageData.targetedEnemy);
+                            playerStatistics.AddMoney((int)currentDamageData.totalDamage); 
                         }
                     }
                 }
             }
+
 
             //remove enemies
             if (enemiesToRemove.Count > 0)
@@ -210,6 +222,18 @@ public class GameLoopManager : MonoBehaviour
     public static void EnqueueEnemyToRemove(Enemy enemyToRemove)
     {
         enemiesToRemove.Enqueue(enemyToRemove);
+    }
+}
+
+public struct EnemyGroup
+{
+    public EnemyType enemyType;  
+    public int count;           
+
+    public EnemyGroup(EnemyType type, int count)
+    {
+        this.enemyType = type;
+        this.count = count;
     }
 }
 

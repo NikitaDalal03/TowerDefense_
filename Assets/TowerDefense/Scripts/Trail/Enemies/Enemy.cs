@@ -45,7 +45,6 @@ public class Enemy : MonoBehaviour
                 }
 
                 ActiveEffects[i].ExpireTime -= Time.deltaTime;
-
             }
         }
 

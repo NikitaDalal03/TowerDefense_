@@ -40,42 +40,47 @@ public class EntitySummoners : MonoBehaviour
         }
     }
 
-    public static Enemy SummonEnemy(int enemyId)
+    public static Enemy SummonEnemy(EnemyType enemyType)
     {
-        Enemy SummonedEnemy = null;
+        EnemySummonData summonData = null;
 
-        if(enemyPrefabs.ContainsKey(enemyId))
+        // Find the right EnemySummonData based on the EnemyType
+        foreach (EnemySummonData data in Resources.LoadAll<EnemySummonData>("Enemies"))
         {
-            Queue<Enemy> referencedQueue = enemyObjectPools[enemyId];
-            if(referencedQueue.Count > 0)
+            if (data.enemyStats.type == enemyType)
             {
-                //dequeue enemy and initialized
-                SummonedEnemy = referencedQueue.Dequeue();
-                SummonedEnemy.Init();
+                summonData = data;
+                break;
+            }
+        }
 
-                SummonedEnemy.gameObject.SetActive(true);
-            }
-            else
-            {
-                //instantiate new instance of enemy and initialize
-                GameObject newEnemy = Instantiate(enemyPrefabs[enemyId], GameLoopManager.nodePositions[0], Quaternion.identity);
-                SummonedEnemy = newEnemy.GetComponent<Enemy>();
-                SummonedEnemy.Init();
-            }
+        if (summonData != null)
+        {
+            GameObject enemyPrefab = summonData.enemyPrefab;
+            EnemySummonData enemyStats = summonData;
+
+            // Instantiate the enemy and initialize
+            GameObject newEnemy = Instantiate(enemyPrefab, GameLoopManager.nodePositions[0], Quaternion.identity);
+            Enemy summonedEnemy = newEnemy.GetComponent<Enemy>();
+            summonedEnemy.Init();
+            summonedEnemy.maxHealth = enemyStats.enemyStats.health;
+            summonedEnemy.health = enemyStats.enemyStats.health;
+            summonedEnemy.speed = enemyStats.enemyStats.speed;
+
+            // Add to game lists
+            if (!enemiesInGame.Contains(summonedEnemy)) enemiesInGame.Add(summonedEnemy);
+            if (!enemiesInGameTransform.Contains(summonedEnemy.transform)) enemiesInGameTransform.Add(summonedEnemy.transform);
+            if (!enemyTransformPairs.ContainsKey(summonedEnemy.transform)) enemyTransformPairs.Add(summonedEnemy.transform, summonedEnemy);
+
+            return summonedEnemy;
         }
         else
         {
-            Debug.Log($"EntitySummoner : Enemy with ID of {enemyId} does not exists!");
+            Debug.LogError("Enemy type not found!");
             return null;
-        }   
-
-        if (!enemiesInGame.Contains(SummonedEnemy)) enemiesInGame.Add(SummonedEnemy);
-        if (!enemiesInGameTransform.Contains(SummonedEnemy.transform)) enemiesInGameTransform.Add(SummonedEnemy.transform);
-        if (!enemyTransformPairs.ContainsKey(SummonedEnemy.transform)) enemyTransformPairs.Add(SummonedEnemy.transform, SummonedEnemy);
-
-        SummonedEnemy.ID = enemyId;
-        return SummonedEnemy;
+        }
     }
+
 
     public static void RemoveEnemy(Enemy enemyToRemove)
     {

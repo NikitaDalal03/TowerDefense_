@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoneyDisplayText: {fileID: 1560947167}
-  StartingMoney: 400
+  StartingMoney: 350
 --- !u!114 &318672521
 MonoBehaviour:
   m_ObjectHideFlags: 0

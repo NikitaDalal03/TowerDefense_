@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c62c214fb1a343748d8a2feb3e65ac3, type: 3}
-  m_Name: NormalEnemy
+  m_Name: FastEnemy
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3107582787957067159, guid: 9604728715550467f892f1c82fbc8a31, type: 3}
-  enemyId: 1
+  enemyPrefab: {fileID: 6211807395756914957, guid: 0911914a89c4f4143b237e4f18cb93af, type: 3}
+  enemyId: 2
   enemyStats:
-    health: 80
-    speed: 50
-    type: 0
+    type: 1
+    health: 50
+    speed: 100
