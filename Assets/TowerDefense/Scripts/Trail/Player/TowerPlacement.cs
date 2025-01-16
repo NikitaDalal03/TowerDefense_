@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro; 
 
 public class TowerPlacement : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class TowerPlacement : MonoBehaviour
     [Header("Player Stats")]
     public PlayersStats playerStats;
 
+    [Header("UI")]
+    public GameObject notEnoughMoneyText; 
+
     private GameObject currentPlacingTower;
     private bool isPlacing = false;
 
@@ -17,13 +21,11 @@ public class TowerPlacement : MonoBehaviour
     {
         if (towerPrefab == null)
         {
-            //Debug.LogWarning("SetTowerToPlace failed: Tower prefab is null.");
             return;
         }
 
         if (isPlacing)
         {
-            //Debug.Log("SetTowerToPlace: Canceling previous placement.");
             CancelPlacement();
         }
 
@@ -36,8 +38,6 @@ public class TowerPlacement : MonoBehaviour
         {
             towerRenderer.material.color = Color.yellow;
         }
-
-        //Debug.Log("SetTowerToPlace: Placing " + towerPrefab.name);
     }
 
     void Update()
@@ -58,13 +58,11 @@ public class TowerPlacement : MonoBehaviour
 
                 if (hitCollider == null)
                 {
-                    //Debug.LogWarning("HandlePlacement: Hit collider is null.");
                     return;
                 }
 
                 if (!hitCollider.CompareTag("CanPlace"))
                 {
-                    //Debug.LogWarning("HandlePlacement: Hit object is not tagged with 'CanPlace'.");
                     return;
                 }
 
@@ -73,7 +71,6 @@ public class TowerPlacement : MonoBehaviour
 
                 if (towerCollider == null)
                 {
-                    //Debug.LogWarning("HandlePlacement: Tower prefab is missing a BoxCollider.");
                     return;
                 }
 
@@ -96,13 +93,15 @@ public class TowerPlacement : MonoBehaviour
                     renderer.material.color = canPlace ? Color.green : Color.red;
                 }
 
-                // Placement validation 
-                //Debug.Log($"Placement Validation - HasValidTag: {hasValidTag}, IsOverlap: {isOverlap}, HasEnoughMoney: {hasEnoughMoney}, CanPlace: {canPlace}");
-
-                // Place tower on left mouse
                 if (Input.GetMouseButtonDown(0) && canPlace)
                 {
                     PlaceTower();
+                }
+
+                // Show the "Not Enough Money" message if the player can't afford the tower
+                if (Input.GetMouseButtonDown(0) && !canPlace)
+                {
+                    ShowNotEnoughMoneyMessage();
                 }
 
                 // Cancel placement right mouse or Escape 
@@ -122,7 +121,6 @@ public class TowerPlacement : MonoBehaviour
     {
         if (currentPlacingTower == null)
         {
-           //Debug.LogWarning("PlaceTower failed: No tower is currently being placed.");
             return;
         }
 
@@ -143,25 +141,24 @@ public class TowerPlacement : MonoBehaviour
                 // Deduct the cost from the player's money only if the tower is successfully placed
                 if (playerStats.SubtractMoney(towerBehavior.SummonCost))
                 {
-                    Debug.Log($"PlaceTower: Placed {towerBehavior.gameObject.name} for {towerBehavior.SummonCost} coins.");
+                    Debug.Log($"Placed {towerBehavior.gameObject.name} for {towerBehavior.SummonCost} coins.");
                 }
                 else
                 {
-                    Debug.LogWarning("PlaceTower failed: Not enough money.");
-                    CancelPlacement(); 
+                    Debug.LogWarning("Not enough money.");
+                    CancelPlacement();
                 }
             }
             else
             {
-                Debug.LogError("PlaceTower failed: GameLoopManager instance is null.");
+                Debug.LogError("GameLoopManager instance is null.");
             }
         }
         else
         {
-            Debug.LogWarning("PlaceTower: TowerBehavior component is missing on the tower prefab.");
+            Debug.LogWarning("TowerBehavior component is missing on the tower prefab.");
         }
 
-        // Reset placement state
         currentPlacingTower = null;
         isPlacing = false;
     }
@@ -170,16 +167,29 @@ public class TowerPlacement : MonoBehaviour
     {
         if (currentPlacingTower != null)
         {
-            //Debug.Log("CancelPlacement: Destroying currentPlacingTower.");
             Destroy(currentPlacingTower);
             currentPlacingTower = null;
         }
-        else
-        {
-            Debug.LogWarning("CancelPlacement called, but no tower was being placed.");
-        }
 
         isPlacing = false;
+        HideNotEnoughMoneyMessage();
+    }
+
+    private void ShowNotEnoughMoneyMessage()
+    {
+        if (notEnoughMoneyText != null)
+        {
+            notEnoughMoneyText.gameObject.SetActive(true); 
+            Invoke("HideNotEnoughMoneyMessage", 2f); 
+        }
+    }
+
+    private void HideNotEnoughMoneyMessage()
+    {
+        if (notEnoughMoneyText != null)
+        {
+            notEnoughMoneyText.gameObject.SetActive(false); 
+        }
     }
 
     private float GetSelectedTowerCost()
@@ -190,11 +200,9 @@ public class TowerPlacement : MonoBehaviour
         TowerBehavior tempTower = currentPlacingTower.GetComponent<TowerBehavior>();
         if (tempTower != null)
         {
-            Debug.Log($"GetSelectedTowerCost: {tempTower.gameObject.name} costs {tempTower.SummonCost}.");
             return tempTower.SummonCost;
         }
 
-        Debug.LogWarning("GetSelectedTowerCost: TowerBehavior component is missing.");
         return 0f;
     }
 }

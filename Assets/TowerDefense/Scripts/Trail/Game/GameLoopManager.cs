@@ -62,8 +62,8 @@ public class GameLoopManager : MonoBehaviour
             nodeDistances[i] = Vector3.Distance(nodePositions[i], nodePositions[i + 1]);
         }
 
-        StartCoroutine(GameLoop());
-        InvokeRepeating("SummonTest", 0f, 5f);
+        //StartCoroutine(GameLoop());
+        //InvokeRepeating("SummonTest", 0f, 5f);
         //InvokeRepeating("RemoveTest", 0f, 1.5f);
     }
 
@@ -83,6 +83,13 @@ public class GameLoopManager : MonoBehaviour
     //        EntitySummoners.RemoveEnemy(EntitySummoners.enemiesInGame[Random.Range(0, EntitySummoners.enemiesInGame.Count)]);
     //    }
     //}
+
+  
+    public void StartSpawning()
+    {
+        StartCoroutine(GameLoop());
+        InvokeRepeating("SummonTest", 0f, 5f);
+    }
 
     IEnumerator GameLoop()
     {

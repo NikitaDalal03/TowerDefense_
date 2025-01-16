@@ -10,8 +10,7 @@ public class GameOver : MonoBehaviour
 
     public int playerHealth = 20;  
     //private int remainingEnemies;  
-    public TextMeshProUGUI countText;  
-    public GameObject gameOverScreen;  
+    public TextMeshProUGUI countText;   
 
     private void Awake()
     {
@@ -39,7 +38,6 @@ public class GameOver : MonoBehaviour
 
     private void Start()
     {
-        gameOverScreen.SetActive(false);
         countText.text = $"{playerHealth}";
     }
 
@@ -57,17 +55,7 @@ public class GameOver : MonoBehaviour
 
         if (playerHealth <= 0)
         {
-            GameOverLogic();
+            UIManager.instance.SwitchScreen(GameScreens.GameOver);
         }
-    }
-
-    private void GameOverLogic()
-    {
-        if (gameOverScreen != null)
-        {
-            gameOverScreen.SetActive(true);
-        }
-
-        Time.timeScale = 0f;  
     }
 }
