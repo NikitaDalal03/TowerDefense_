@@ -97,7 +97,7 @@ public class TowerPlacement : MonoBehaviour
                 }
 
                 // Placement validation 
-                Debug.Log($"Placement Validation - HasValidTag: {hasValidTag}, IsOverlap: {isOverlap}, HasEnoughMoney: {hasEnoughMoney}, CanPlace: {canPlace}");
+                //Debug.Log($"Placement Validation - HasValidTag: {hasValidTag}, IsOverlap: {isOverlap}, HasEnoughMoney: {hasEnoughMoney}, CanPlace: {canPlace}");
 
                 // Place tower on left mouse
                 if (Input.GetMouseButtonDown(0) && canPlace)
@@ -122,7 +122,7 @@ public class TowerPlacement : MonoBehaviour
     {
         if (currentPlacingTower == null)
         {
-            Debug.LogWarning("PlaceTower failed: No tower is currently being placed.");
+           //Debug.LogWarning("PlaceTower failed: No tower is currently being placed.");
             return;
         }
 
@@ -170,7 +170,7 @@ public class TowerPlacement : MonoBehaviour
     {
         if (currentPlacingTower != null)
         {
-            Debug.Log("CancelPlacement: Destroying currentPlacingTower.");
+            //Debug.Log("CancelPlacement: Destroying currentPlacingTower.");
             Destroy(currentPlacingTower);
             currentPlacingTower = null;
         }

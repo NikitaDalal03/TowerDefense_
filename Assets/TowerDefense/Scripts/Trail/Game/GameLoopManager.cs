@@ -70,9 +70,9 @@ public class GameLoopManager : MonoBehaviour
     void SummonTest()
     {
         //EnqueueEnemyIDToSummon(1);
-        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Basic, 5));
-        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Fast, 5));
-        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Tank, 5));
+        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Basic, 1));
+        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Fast, 1));
+        enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Tank, 1));
         enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Boss, 1));
     }
 
@@ -140,7 +140,7 @@ public class GameLoopManager : MonoBehaviour
             //tick towers
             foreach (TowerBehavior tower in towersInGame)
             {
-                tower.target = TowersTargetting.GetTarget(tower, TowersTargetting.TargetType.Close);
+                tower.target = TowersTargetting.GetTarget(tower, TowersTargetting.TargetType.Strong);
                 tower.Tick();
             }
 
@@ -294,15 +294,23 @@ public struct MovesEnemiesJob : IJobParallelForTransform
 
     public float deltaTime;
 
-
     public void Execute(int index, TransformAccess transform)
     {
+        // Ensure the enemy is not at the last node and still has a next node to move to
         if (nodeIndex[index] < nodepositions.Length)
         {
-            Vector3 PositionToMoveTo = nodepositions[nodeIndex[index]];
-            transform.position = Vector3.MoveTowards(transform.position, PositionToMoveTo, EnemySpeed[index] * deltaTime);
+            Vector3 directionToNextNode = nodepositions[nodeIndex[index]] - transform.position;
 
-            if (transform.position == PositionToMoveTo)
+            if (directionToNextNode != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(directionToNextNode);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, deltaTime * 5f);
+
+                transform.position = Vector3.MoveTowards(transform.position, nodepositions[nodeIndex[index]], EnemySpeed[index] * deltaTime);
+            }
+
+            //if reach current move to next
+            if (Vector3.Distance(transform.position, nodepositions[nodeIndex[index]]) < 0.1f)
             {
                 nodeIndex[index]++;
             }

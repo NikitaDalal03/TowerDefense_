@@ -21,15 +21,53 @@ public class TowersTargetting
         NativeArray<EnemyData> enemiesToCalculate = new NativeArray<EnemyData>(enemiesInRange.Length, Allocator.TempJob);
         NativeArray<Vector3> NodePositions = new NativeArray<Vector3>(GameLoopManager.nodePositions, Allocator.TempJob);
         NativeArray<float> NodeDistances = new NativeArray<float>(GameLoopManager.nodeDistances, Allocator.TempJob);
-        NativeArray<int> enemyToIndex = new NativeArray<int>(new int[] { -1}, Allocator.TempJob);
+        NativeArray<int> enemyToIndex = new NativeArray<int>(new int[] { -1 }, Allocator.TempJob);
         int EnemyIndexToReturn = -1;
+
+        // Ensure there are enemies in range
+        if (enemiesInRange.Length == 0)
+        {
+            //Debug.LogWarning("No enemies in range of the tower.");
+            enemiesToCalculate.Dispose();
+            NodePositions.Dispose();
+            NodeDistances.Dispose();
+            enemyToIndex.Dispose();
+            return null;
+        }
+
 
         for (int i = 0; i < enemiesToCalculate.Length; i++)
         {
-            Enemy currentEnemy = enemiesInRange[i].transform.parent.GetComponent<Enemy>();
-            int EnemyIndexInList = EntitySummoners.enemiesInGame.FindIndex(x => x == currentEnemy);
+            // Ensure the enemy has a parent and an Enemy component
+            if (enemiesInRange[i].transform.parent != null)
+            {
+                Enemy currentEnemy = enemiesInRange[i].transform.parent.GetComponent<Enemy>();
+                if (currentEnemy != null)
+                {
+                    int EnemyIndexInList = EntitySummoners.enemiesInGame.FindIndex(x => x == currentEnemy);
 
-            enemiesToCalculate[i] = new EnemyData(currentEnemy.transform.position, currentEnemy.nodeIndex, currentEnemy.health, EnemyIndexInList);
+                    enemiesToCalculate[i] = new EnemyData(currentEnemy.transform.position, currentEnemy.nodeIndex, currentEnemy.health, EnemyIndexInList);
+                }
+                else
+                {
+                    Debug.LogWarning("Enemy component missing on enemy " + enemiesInRange[i].transform.parent.name);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Enemy " + enemiesInRange[i].transform.name + " has no parent.");
+            }
+        }
+
+        // Check if there are valid enemies to calculate
+        if (enemiesToCalculate.Length == 0)
+        {
+            Debug.LogWarning("No valid enemies found in range.");
+            enemiesToCalculate.Dispose();
+            NodePositions.Dispose();
+            NodeDistances.Dispose();
+            enemyToIndex.Dispose();
+            return null;
         }
 
         SearchForEnemy EnemySearchJob = new SearchForEnemy
@@ -43,7 +81,7 @@ public class TowersTargetting
             TowerPosition = currenTower.transform.position
         };
 
-        switch((int)TargetMethod)
+        switch ((int)TargetMethod)
         {
             case 0: //First
                 EnemySearchJob.CompareValue = Mathf.Infinity;
@@ -67,10 +105,10 @@ public class TowersTargetting
         JobHandle SearchJobHandle = EnemySearchJob.Schedule(enemiesToCalculate.Length, dependency);
         SearchJobHandle.Complete();
 
-        if(enemyToIndex[0] != -1)
+        if (enemyToIndex[0] != -1)
         {
             EnemyIndexToReturn = enemiesToCalculate[enemyToIndex[0]].EnemyIndex;
-            
+
             enemiesToCalculate.Dispose();
             NodePositions.Dispose();
             NodeDistances.Dispose();
