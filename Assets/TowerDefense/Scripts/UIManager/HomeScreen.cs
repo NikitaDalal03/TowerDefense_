@@ -22,8 +22,5 @@ public class HomeScreen : BaseScreen
     {
         //SoundManager.inst.PlaySound(SoundName.BtnClick);
         UIManager.instance.SwitchScreen(GameScreens.Play);
-        //GameLoopManager.Instance.StartCoroutine(GameLoop());
     }
-
-
 }

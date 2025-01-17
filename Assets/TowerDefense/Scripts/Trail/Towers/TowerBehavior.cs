@@ -33,10 +33,7 @@ public class TowerBehavior : MonoBehaviour
         delay = 1 / fireRate;
     }
 
-    void Update()
-    {
-
-    }
+  
 
     public void Tick()
     {
@@ -47,6 +44,7 @@ public class TowerBehavior : MonoBehaviour
             towerPivote.transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
         }
     }
+
 
     private void OnDrawGizmos()
     {

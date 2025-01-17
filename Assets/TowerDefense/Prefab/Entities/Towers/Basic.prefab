@@ -55,7 +55,7 @@ MonoBehaviour:
   towerPivote: {fileID: 6991969622815064670}
   SummonCost: 100
   damage: 5
-  fireRate: 5
+  fireRate: 3
   range: 150
 --- !u!114 &473362869874749243
 MonoBehaviour:
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e9d721f92424aed900cea3252cf6c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletAnchor: {fileID: 8904664130253521877}
 --- !u!65 &4428216978020875233
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121,7 +122,8 @@ Transform:
   m_LocalPosition: {x: -0.5627, y: 0.0004, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8904664130253521877}
   m_Father: {fileID: 6838364364400790222}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &1636207834324600559
@@ -279,6 +281,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6770448842063796197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8904664130253521877}
+  m_Layer: 3
+  m_Name: Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8904664130253521877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6770448842063796197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.00000003687849, y: 0.23105633, z: -0.000000005268355, w: 0.9729404}
+  m_LocalPosition: {x: 0.24, y: -0.14, z: 0.44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5295028265579382871}
+  m_LocalEulerAnglesHint: {x: 0, y: 26.719, z: 0}
 --- !u!1 &6833101160775601834
 GameObject:
   m_ObjectHideFlags: 0

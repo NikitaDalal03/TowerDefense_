@@ -4,48 +4,50 @@ using UnityEngine;
 
 public class BulletPool : MonoBehaviour
 {
+    // Singleton pattern
     public static BulletPool instance;
 
+    // Pool of bullets
+    public Queue<Bullet> bulletPool = new Queue<Bullet>();
+
+    public int poolSize = 10;
     public Bullet bulletPrefab;
-    public List<Bullet> bullets;
 
-    private int poolsize = 8;
-
-    private void Awake()
+    void Awake()
     {
-        instance = this;
-    }
-
-    public void Start()
-    {
-        bullets = new List<Bullet>();
-        Addbullets(poolsize);
-    }
-
-    public void Addbullets(int objectToSpawn)
-    {
-        for (int i = 0; i < objectToSpawn; i++)
+        if (instance == null)
         {
-            Bullet currentBullet = Instantiate(bulletPrefab, transform);
-            currentBullet.gameObject.SetActive(false);
-            bullets.Add(currentBullet);
+            instance = this;
+        }
+    }
+
+    void Start()
+    {
+        for (int i = 0; i < poolSize; i++)
+        {
+            Bullet bullet = Instantiate(bulletPrefab);
+            bullet.gameObject.SetActive(false); // Deactivate all bullets initially
+            bulletPool.Enqueue(bullet);
         }
     }
 
     public Bullet GetBullet()
     {
-        if (bullets.Count <= 0)
-            Addbullets(poolsize);
-
-        Bullet getbullet = bullets[bullets.Count - 1];
-        bullets.Remove(bullets[bullets.Count - 1]);
-        return getbullet;
+        if (bulletPool.Count > 0)
+        {
+            Bullet bullet = bulletPool.Dequeue();
+            return bullet;
+        }
+        else
+        {
+            Debug.LogWarning("Bullet pool is empty! Consider increasing pool size.");
+            return null; 
+        }
     }
 
-    public void RetunToPool(Bullet bullet)
+    public void ReturnToPool(Bullet bullet)
     {
-        Bullet returnedBullet = bullet;
-        returnedBullet.gameObject.SetActive(false);
-        bullets.Add(returnedBullet);
+        bullet.gameObject.SetActive(false); 
+        bulletPool.Enqueue(bullet); 
     }
 }
