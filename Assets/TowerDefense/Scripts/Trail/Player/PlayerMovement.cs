@@ -78,12 +78,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 ClampCameraPosition(Vector3 currentPosition)
     {
-
         float clampedX = Mathf.Clamp(currentPosition.x, minXBoundary, maxXBoundary);
-
-
         float clampedZ = Mathf.Clamp(currentPosition.z, minZBoundary, maxZBoundary);
-
 
         return new Vector3(clampedX, currentPosition.y, clampedZ);
     }
