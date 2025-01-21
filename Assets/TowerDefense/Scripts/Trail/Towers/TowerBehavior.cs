@@ -32,7 +32,6 @@ public class TowerBehavior : MonoBehaviour
                
         delay = 1 / fireRate;
     }
-
   
 
     public void Tick()
