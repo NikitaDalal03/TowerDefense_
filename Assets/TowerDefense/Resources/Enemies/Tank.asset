@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c62c214fb1a343748d8a2feb3e65ac3, type: 3}
   m_Name: Tank
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 7682849099626130411, guid: 505a59dd7e8544239885f1c75f4b8776, type: 3}
+  enemyPrefab: {fileID: 1497507383330918, guid: f2c6afbecebd44d2798cc8a512d9db5a, type: 3}
   enemyId: 3
   enemyStats:
     type: 2
     health: 200
-    speed: 30
+    speed: 3
