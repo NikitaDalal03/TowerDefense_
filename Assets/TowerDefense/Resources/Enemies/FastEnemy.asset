@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c62c214fb1a343748d8a2feb3e65ac3, type: 3}
   m_Name: FastEnemy
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1497507383330918, guid: e81c1c0434d014f1db6ef1a3a9072d99, type: 3}
+  enemyPrefab: {fileID: 3160210531971958367, guid: 8335f736acc734756a5c27ed947fa6e2, type: 3}
   enemyId: 2
   enemyStats:
     type: 1
     health: 50
-    speed: 10
+    speed: 4
