@@ -74,8 +74,8 @@ public class TowerPlacement : MonoBehaviour
                     return;
                 }
 
-                float towerHalfHeight = towerCollider.size.y / 2f;
-                float placementY = hitCollider.bounds.max.y + towerHalfHeight;
+                //float towerHalfHeight = towerCollider.size.y / 2f;
+                float placementY = hitCollider.bounds.max.y;// + towerHalfHeight;
 
                 Vector3 placementPosition = new Vector3(placementCenter.x, placementY, placementCenter.z);
                 currentPlacingTower.transform.position = placementPosition;

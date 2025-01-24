@@ -7,9 +7,7 @@ public enum GameScreens
 {
     Home,
     Play,
-    Pause,
-    GameOver,
-    Win
+    GameOver
 }
 public enum GamePopUp
 {

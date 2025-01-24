@@ -55,6 +55,7 @@ public class GameOver : MonoBehaviour
 
         if (playerHealth <= 0)
         {
+            Debug.Log("GameOver");
             UIManager.instance.SwitchScreen(GameScreens.GameOver);
         }
     }

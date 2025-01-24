@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TowerDefense/WithEnvironment/Environment/PolygonBattleRoyale/Scenes/TowerDefenseWithEnvironment.unity
+    path: Assets/TowerDefense/WithEnvironment/Scenes/TowerDefenseWithEnvironment.unity
     guid: e693fb2e51fa599488a7f68ac51c5c88
   - enabled: 1
     path: Assets/TowerDefense/CoreSetupEnvironment/Scenes/TowerDefenseScene.unity

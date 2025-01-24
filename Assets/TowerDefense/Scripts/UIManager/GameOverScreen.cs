@@ -24,7 +24,7 @@ public class GameOverScreen : BaseScreen
     void OnHome()
     {
         SceneManager.LoadScene(0);
-        UIManager.instance.SwitchScreen(GameScreens.Play);
+       // UIManager.instance.SwitchScreen(GameScreens.Play);
     }
 
 }
