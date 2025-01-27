@@ -16,6 +16,9 @@ public class TowerBehavior : MonoBehaviour
 
     private float delay;
 
+    [SerializeField] private ParticleSystem placementParticle;
+    private bool hasPlayedPlacementEffect = false;
+
     private IDamageMethod currentDamageMethodClass;
 
     void Start()
@@ -51,6 +54,15 @@ public class TowerBehavior : MonoBehaviour
         {
             Gizmos.DrawWireSphere(transform.position, range);
             Gizmos.DrawLine(towerPivote.position, target.rootPart.position);
+        }
+    }
+
+    public void PlayPlacementEffect()
+    {
+        if (placementParticle != null && !hasPlayedPlacementEffect)
+        {
+            placementParticle.Play();
+            hasPlayedPlacementEffect = true;
         }
     }
 }

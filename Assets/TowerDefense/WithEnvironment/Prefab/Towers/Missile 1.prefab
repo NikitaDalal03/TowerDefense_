@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2417945465404114408}
   m_Layer: 3
   m_Name: Anchor
-  m_TagString: Untagged
+  m_TagString: CantPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5446980034637198320}
   m_Layer: 3
   m_Name: HeadPivote
-  m_TagString: Untagged
+  m_TagString: CantPlace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,7 @@ Transform:
   m_Children:
   - {fileID: 7865194410870898457}
   - {fileID: 5446980034637198320}
+  - {fileID: 4517820599938018484}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3394298049754122574
@@ -119,10 +120,11 @@ MonoBehaviour:
     m_Bits: 64
   target: {fileID: 7632623667256659542, guid: 9604728715550467f892f1c82fbc8a31, type: 3}
   towerPivote: {fileID: 5446980034637198320}
-  SummonCost: 350
+  SummonCost: 300
   damage: 10
   fireRate: 0.5
   range: 10
+  placementParticle: {fileID: 8855073096384833012}
 --- !u!114 &1447666609732016087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,21 +177,37 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3326914270053428136, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3326914270053428136, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3326914270053428136, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3326914270053428136, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5111007872190943012, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e4e8d3e5ce83b4e75a11ada3d5ffc849, type: 2}
     - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -238,6 +256,10 @@ PrefabInstance:
     - target: {fileID: 8605853966355885597, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
       propertyPath: m_Name
       value: GunShot_Smoke_FX (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605853966355885597, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_TagString
+      value: CantPlace
       objectReference: {fileID: 0}
     - target: {fileID: 9190328317895860630, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
       propertyPath: playOnAwake
@@ -314,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8068496044863397089, guid: d5aebdbb211874099b61d73d8fe6abda, type: 3}
+      propertyPath: m_TagString
+      value: CantPlace
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -380,6 +406,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8945785818708916348, guid: 4ed6212cd0a5f47319f89e99fd5b1b23, type: 3}
+      propertyPath: m_TagString
+      value: CantPlace
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -392,6 +422,137 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4243668698051441398, guid: 4ed6212cd0a5f47319f89e99fd5b1b23, type: 3}
   m_PrefabInstance: {fileID: 5825854392973159612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6606781143340550695
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4941381532108566866}
+    m_Modifications:
+    - target: {fileID: 2401415182911991763, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401415182911991763, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401415182911991763, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3326914270053428136, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3326914270053428136, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3326914270053428136, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3326914270053428136, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111007872190943012, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e4e8d3e5ce83b4e75a11ada3d5ffc849, type: 2}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605853966355885597, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_Name
+      value: GunShot_Smoke_FX (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8605853966355885597, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: m_TagString
+      value: CantPlace
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190328317895860630, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190328317895860630, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190328317895860630, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+--- !u!4 &4517820599938018484 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7278526819151603347, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+  m_PrefabInstance: {fileID: 6606781143340550695}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8855073096384833012 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2401415182911991763, guid: b3ba180b02385428a82a4c7e407e4c01, type: 3}
+  m_PrefabInstance: {fileID: 6606781143340550695}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7198253378394517507
 PrefabInstance:
@@ -408,6 +569,10 @@ PrefabInstance:
     - target: {fileID: 3124237719489630456, guid: 279d90c1aa2c5d0498c08656a0438a72, type: 3}
       propertyPath: m_Name
       value: Explosion (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124237719489630456, guid: 279d90c1aa2c5d0498c08656a0438a72, type: 3}
+      propertyPath: m_TagString
+      value: CantPlace
       objectReference: {fileID: 0}
     - target: {fileID: 7121169908466480329, guid: 279d90c1aa2c5d0498c08656a0438a72, type: 3}
       propertyPath: m_LocalScale.x

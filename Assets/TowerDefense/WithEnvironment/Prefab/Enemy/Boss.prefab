@@ -2173,7 +2173,7 @@ MonoBehaviour:
   bloodParticle: {fileID: 50525498807274609}
   nodeIndex: 0
   damageResistance: 1
-  maxHealth: 50
+  maxHealth: 100
   health: 0
   speed: 5
   ID: 4

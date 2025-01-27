@@ -17,6 +17,11 @@ public class Bullet : MonoBehaviour
         DeactivateBullet();
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        ReturnBulletToPool();        
+    }
+
 
     public void DeactivateBullet()
     {

@@ -87,7 +87,7 @@ public class GameLoopManager : MonoBehaviour
     public void StartSpawning()
     {
         StartCoroutine(GameLoop());
-        InvokeRepeating("SummonTest", 0f, 20f);
+        InvokeRepeating("SummonTest", 0f, 10f);
     }
 
     IEnumerator GameLoop()

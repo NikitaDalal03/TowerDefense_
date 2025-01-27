@@ -13,7 +13,8 @@ public class TowerPlacement : MonoBehaviour
 
     [Header("UI")]
     public GameObject notEnoughMoneyText; 
-
+    
+   
     private GameObject currentPlacingTower;
     private bool isPlacing = false;
 
@@ -93,7 +94,7 @@ public class TowerPlacement : MonoBehaviour
                     renderer.material.color = canPlace ? Color.green : Color.red;
                 }
 
-                if (Input.GetMouseButtonDown(0) && canPlace)
+                if (Input.GetMouseButtonDown(0) && canPlace )
                 {
                     PlaceTower();
                 }
@@ -133,14 +134,13 @@ public class TowerPlacement : MonoBehaviour
         TowerBehavior towerBehavior = currentPlacingTower.GetComponent<TowerBehavior>();
         if (towerBehavior != null)
         {
-            // Ensure GameLoopManager is properly referenced
             if (GameLoopManager.Instance != null)
             {
                 GameLoopManager.Instance.towersInGame.Add(towerBehavior);
 
-                // Deduct the cost from the player's money only if the tower is successfully placed
                 if (playerStats.SubtractMoney(towerBehavior.SummonCost))
                 {
+                    towerBehavior.PlayPlacementEffect(); 
                     Debug.Log($"Placed {towerBehavior.gameObject.name} for {towerBehavior.SummonCost} coins.");
                 }
                 else

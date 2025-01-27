@@ -4,10 +4,11 @@ using UnityEngine.UI;
 public class PlayScreen : BaseScreen
 {
     [SerializeField] Button waveBtn;
+    private bool hasStartedSpawning = false;  
 
     private void Start()
     {
-       waveBtn.onClick.AddListener(OnWave);
+        waveBtn.onClick.AddListener(OnWave);
     }
 
     public override void ActivateScreen()
@@ -22,7 +23,17 @@ public class PlayScreen : BaseScreen
 
     void OnWave()
     {
-        GameLoopManager.Instance.StartSpawning();
+        if (!hasStartedSpawning)
+        {
+            GameLoopManager.Instance.StartSpawning();
+            hasStartedSpawning = true;
+            waveBtn.interactable = false; 
+        }
     }
 
+    public void ResetSpawningState()
+    {
+        hasStartedSpawning = false;
+        waveBtn.interactable = true;
+    }
 }
