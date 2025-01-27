@@ -20,13 +20,15 @@ public class Bullet : MonoBehaviour
 
     public void DeactivateBullet()
     {
-        Invoke(returnToPoolMethodName, 2f); 
+        Invoke(returnToPoolMethodName, 5f); 
     }
 
 
     public void ReturnBulletToPool()
     {
         rb.velocity = Vector3.zero;
+        gameObject.transform.rotation = Quaternion.identity;
+        gameObject.transform.position = Vector3.zero;
         BulletPool.instance.ReturnToPool(this);
     }
 }

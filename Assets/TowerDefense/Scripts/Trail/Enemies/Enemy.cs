@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public List<Effect> ActiveEffects;
 
     public Transform rootPart;
+    public ParticleSystem bloodParticle;
 
     public int nodeIndex;
     public float damageResistance = 1f;
@@ -17,6 +18,11 @@ public class Enemy : MonoBehaviour
 
     private bool hasReachedEnd = false;
 
+
+    private float slowDownTime = 0f;
+    private float originalSpeed;
+    private bool isSlowed = false;
+
     public delegate void EnemyReachedEndDelegate();
     public static event EnemyReachedEndDelegate OnEnemyReachedEnd;
 
@@ -26,10 +32,18 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         transform.position = GameLoopManager.nodePositions[0];
         nodeIndex = 0;
+
+        originalSpeed = speed;
+
+        if (bloodParticle != null)
+        {
+            bloodParticle.Stop();
+        }
     }
 
     public void Tick()
     {
+        // Handle active effects (such as damage-over-time)
         for (int i = 0; i < ActiveEffects.Count; i++)
         {
             if (ActiveEffects[i].ExpireTime > 0f)
@@ -50,11 +64,45 @@ public class Enemy : MonoBehaviour
 
         ActiveEffects.RemoveAll(x => x.ExpireTime <= 0f);
 
+        if (isSlowed)
+        {
+            slowDownTime -= Time.deltaTime;
+            if (slowDownTime <= 0f)
+            {
+                ResetSpeed(); 
+            }
+        }
+
         // Check if enemy has reached the last waypoint
         if (!hasReachedEnd && nodeIndex >= GameLoopManager.nodePositions.Length)
         {
             hasReachedEnd = true;
             OnEnemyReachedEnd?.Invoke();
         }
+    }
+
+    public void PlayBloodEffect()
+    {
+        if (bloodParticle != null)
+        {
+            bloodParticle.transform.position = rootPart.position;
+            bloodParticle.Play();
+        }
+    }
+
+    public void ApplySlowdown(float duration, float factor)
+    {
+        if (!isSlowed) 
+        {
+            isSlowed = true;
+            slowDownTime = duration;
+            speed *= factor;  
+        }
+    }
+
+    private void ResetSpeed()
+    {
+        speed = originalSpeed;
+        isSlowed = false;
     }
 }

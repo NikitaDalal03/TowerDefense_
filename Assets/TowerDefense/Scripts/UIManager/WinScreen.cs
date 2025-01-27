@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class WinScreen : BaseScreen
 {
-    [SerializeField] Button retryButton;
+    //[SerializeField] Button retryButton;
     [SerializeField] Button homeButton;
-    [SerializeField] Button nextButton;
+    //[SerializeField] Button nextButton;
 
 
     private void Start()
     {
-        retryButton.onClick.AddListener(OnRetry);
+        //retryButton.onClick.AddListener(OnRetry);
         homeButton.onClick.AddListener(OnHome);
-        nextButton.onClick.AddListener(OnNext);
+        //nextButton.onClick.AddListener(OnNext);
     }
 
     public override void ActivateScreen()
@@ -28,11 +28,11 @@ public class WinScreen : BaseScreen
         base.DeActivateScreen();
     }
 
-    void OnRetry()
-    {
-        //SoundManager.inst.PlaySound(SoundName.BtnClick);
-        UIManager.instance.SwitchScreen(GameScreens.Play);
-    }
+    //void OnRetry()
+    //{
+    //    //SoundManager.inst.PlaySound(SoundName.BtnClick);
+    //    UIManager.instance.SwitchScreen(GameScreens.Play);
+    //}
 
     void OnHome()
     {
@@ -40,11 +40,11 @@ public class WinScreen : BaseScreen
         UIManager.instance.SwitchScreen(GameScreens.Home);
     }
 
-    void OnNext()
-    {
-        //SoundManager.inst.PlaySound(SoundName.BtnClick);
-        UIManager.instance.SwitchScreen(GameScreens.Play);
+    //void OnNext()
+    //{
+    //    //SoundManager.inst.PlaySound(SoundName.BtnClick);
+    //    UIManager.instance.SwitchScreen(GameScreens.Play);
 
-    }
+    //}
 
 }

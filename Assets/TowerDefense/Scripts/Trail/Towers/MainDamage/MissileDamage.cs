@@ -6,6 +6,7 @@ public class MissileDamage : MonoBehaviour, IDamageMethod
 {
     public LayerMask enemiesLayer;
     [SerializeField] private ParticleSystem missileSystem;
+    [SerializeField] private ParticleSystem shotParticle;
     [SerializeField] private Transform towerHead;
 
     private ParticleSystem.MainModule missileSystemMain;
@@ -36,6 +37,12 @@ public class MissileDamage : MonoBehaviour, IDamageMethod
             missileSystemMain.startRotationZ = towerHead.forward.z;
 
             missileSystem.Play();
+            shotParticle.Play();
+
+            float slowDownDuration = 0.5f;
+            float slowDownFactor = 0.3f;
+            target.ApplySlowdown(slowDownDuration, slowDownFactor);
+
             delay = 1f / fireRate;
         }
     }

@@ -40,7 +40,7 @@ public class TowerBehavior : MonoBehaviour
 
         if (target != null)
         {
-            towerPivote.transform.rotation = Quaternion.LookRotation(target.transform.position - transform.position);
+            towerPivote.transform.rotation = Quaternion.LookRotation(target.rootPart.position - transform.position);
         }
     }
 
@@ -50,7 +50,7 @@ public class TowerBehavior : MonoBehaviour
         if(target != null)
         {
             Gizmos.DrawWireSphere(transform.position, range);
-            Gizmos.DrawLine(towerPivote.position, target.transform.position);
+            Gizmos.DrawLine(towerPivote.position, target.rootPart.position);
         }
     }
 }

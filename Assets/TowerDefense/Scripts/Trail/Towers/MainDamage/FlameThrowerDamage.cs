@@ -26,6 +26,10 @@ public class FlameThrowerDamage : MonoBehaviour, IDamageMethod
             return;
         }
         fireEffect.Stop();
+
+        float slowDownDuration = 0.5f;
+        float slowDownFactor = 0.3f;
+        target.ApplySlowdown(slowDownDuration, slowDownFactor);
     }
 
 }

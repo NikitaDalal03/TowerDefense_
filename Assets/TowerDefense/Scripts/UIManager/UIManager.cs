@@ -7,7 +7,8 @@ public enum GameScreens
 {
     Home,
     Play,
-    GameOver
+    GameOver,
+    Win
 }
 public enum GamePopUp
 {
@@ -26,13 +27,14 @@ public class UIManager : MonoBehaviour
         currentScreen.ActivateScreen();
     }
 
-    private void Update()
-    {
-        currentScreen.TakeInput();
-    }
+    //private void Update()
+    //{
+    //    currentScreen.TakeInput();
+    //}
 
     public void SwitchScreen(GameScreens screen)
     {
+        if (screen == currentScreen.screen) return;
         foreach (BaseScreen baseScreen in screens)
         {
             if (baseScreen.screen == screen)

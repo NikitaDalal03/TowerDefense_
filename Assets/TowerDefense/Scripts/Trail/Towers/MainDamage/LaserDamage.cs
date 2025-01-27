@@ -33,6 +33,10 @@ public class LaserDamage : MonoBehaviour, IDamageMethod
             }
 
             GameLoopManager.EnqueueDamageData(new EnemyDamageData(target, damage, target.damageResistance));
+            float slowDownDuration = 0.5f;
+            float slowDownFactor = 0.3f;
+            target.ApplySlowdown(slowDownDuration, slowDownFactor);
+
             delay = 1f / fireRate;
             return;
         }

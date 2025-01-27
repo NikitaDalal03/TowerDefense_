@@ -24,13 +24,11 @@ public class GameLoopManager : MonoBehaviour
     public Transform nodeParent;
     public bool loopShouldEnd;
 
-
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -70,6 +68,7 @@ public class GameLoopManager : MonoBehaviour
     void SummonTest()
     {
         //EnqueueEnemyIDToSummon(1);
+        Debug.Log("SummonTest");
         enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Basic, 1));
         enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Fast, 1));
         enemyGroupsToSummon.Enqueue(new EnemyGroup(EnemyType.Tank, 1));
@@ -88,13 +87,14 @@ public class GameLoopManager : MonoBehaviour
     public void StartSpawning()
     {
         StartCoroutine(GameLoop());
-        InvokeRepeating("SummonTest", 0f, 5f);
+        InvokeRepeating("SummonTest", 0f, 20f);
     }
 
     IEnumerator GameLoop()
     {
         while (loopShouldEnd == false)
         {
+
             //spawn enemies
             if (enemyGroupsToSummon.Count > 0)
             {
@@ -189,7 +189,9 @@ public class GameLoopManager : MonoBehaviour
                         if (!enemiesToRemove.Contains(currentDamageData.targetedEnemy))
                         {
                             EnqueueEnemyToRemove(currentDamageData.targetedEnemy);
-                            playerStatistics.AddMoney((int)currentDamageData.totalDamage); 
+                            playerStatistics.AddMoney((int)currentDamageData.totalDamage);
+
+                            GameWin.Instance?.EnemyDefeated();
                         }
                     }
                 }

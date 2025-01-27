@@ -10,6 +10,7 @@ public interface IDamageMethod
 
 public class StandardDamage : MonoBehaviour, IDamageMethod
 {
+    [SerializeField] private ParticleSystem shotParticle;
     private float damage;
     private float fireRate;
     private float delay;
@@ -33,8 +34,16 @@ public class StandardDamage : MonoBehaviour, IDamageMethod
                 return;
             }
 
-            Shoot(target.transform.position);  
+            shotParticle.Play();
+            Shoot(target.rootPart.position);
+            target.PlayBloodEffect();
+
             GameLoopManager.EnqueueDamageData(new EnemyDamageData(target, damage, target.damageResistance));
+
+            float slowDownDuration = 0.5f; 
+            float slowDownFactor = 0.3f; 
+            target.ApplySlowdown(slowDownDuration, slowDownFactor);
+
             delay = 1f / fireRate;
         }
     }
@@ -44,8 +53,7 @@ public class StandardDamage : MonoBehaviour, IDamageMethod
         Bullet bullet = BulletPool.instance.GetBullet();
         if (bullet != null)
         {
-            bullet.transform.position = bulletAnchor.transform.position;
-            bullet.transform.rotation = bulletAnchor.transform.rotation;
+            bullet.transform.SetPositionAndRotation(bulletAnchor.transform.position, bulletAnchor.transform.rotation);
             bullet.gameObject.SetActive(true);
 
             bullet.ShootBullet(targetPosition);
