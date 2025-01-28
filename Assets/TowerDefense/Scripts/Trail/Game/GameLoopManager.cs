@@ -189,7 +189,7 @@ public class GameLoopManager : MonoBehaviour
                         if (!enemiesToRemove.Contains(currentDamageData.targetedEnemy))
                         {
                             EnqueueEnemyToRemove(currentDamageData.targetedEnemy);
-                            playerStatistics.AddMoney((int)currentDamageData.totalDamage);
+                            playerStatistics.AddMoney(5);//);
 
                             GameWin.Instance?.EnemyDefeated();
                         }

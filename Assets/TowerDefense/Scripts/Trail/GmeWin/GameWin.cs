@@ -47,12 +47,9 @@ public class GameWin : MonoBehaviour
 
         if (gameLoopManager != null)
         {
-            gameLoopManager.loopShouldEnd = true;
+            OnGameWon?.Invoke();
+            UIManager.instance.SwitchScreen(GameScreens.Win);
+            //gameLoopManager.loopShouldEnd = true;
         }
-
-        OnGameWon?.Invoke();
-        Debug.Log("You Win! Total Enemies Defeated: " + enemiesDefeated);
-        // Show the win screen or UI here
-        UIManager.instance.SwitchScreen(GameScreens.Win);
     }
 }

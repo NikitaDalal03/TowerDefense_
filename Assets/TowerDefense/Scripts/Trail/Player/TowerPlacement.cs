@@ -94,7 +94,7 @@ public class TowerPlacement : MonoBehaviour
                     renderer.material.color = canPlace ? Color.green : Color.red;
                 }
 
-                if (Input.GetMouseButtonDown(0) && canPlace )
+                if (Input.GetMouseButtonDown(0) && canPlace)
                 {
                     PlaceTower();
                 }

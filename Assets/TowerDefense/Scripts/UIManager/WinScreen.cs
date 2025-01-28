@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WinScreen : BaseScreen
 {
-    //[SerializeField] Button retryButton;
     [SerializeField] Button homeButton;
-    //[SerializeField] Button nextButton;
 
 
     private void Start()
     {
-        //retryButton.onClick.AddListener(OnRetry);
         homeButton.onClick.AddListener(OnHome);
-        //nextButton.onClick.AddListener(OnNext);
     }
 
     public override void ActivateScreen()
@@ -28,23 +25,10 @@ public class WinScreen : BaseScreen
         base.DeActivateScreen();
     }
 
-    //void OnRetry()
-    //{
-    //    //SoundManager.inst.PlaySound(SoundName.BtnClick);
-    //    UIManager.instance.SwitchScreen(GameScreens.Play);
-    //}
-
     void OnHome()
     {
         //SoundManager.inst.PlaySound(SoundName.BtnClick);
-        UIManager.instance.SwitchScreen(GameScreens.Home);
+        SceneManager.LoadScene(0);
     }
-
-    //void OnNext()
-    //{
-    //    //SoundManager.inst.PlaySound(SoundName.BtnClick);
-    //    UIManager.instance.SwitchScreen(GameScreens.Play);
-
-    //}
 
 }
