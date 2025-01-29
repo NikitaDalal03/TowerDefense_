@@ -138,6 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserPivot: {fileID: 6582581909269681621}
   laserRenderer: {fileID: 7140406597346294734}
+  rotationSpeed: 200
+  turretPivot: {fileID: 1492612790417973163}
 --- !u!65 &786934517670765603
 BoxCollider:
   m_ObjectHideFlags: 0

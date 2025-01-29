@@ -73,6 +73,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotParticle: {fileID: 877470397825444938}
   bulletAnchor: {fileID: 2485643029356454324}
+  rotationSpeed: 200
+  turretPivot: {fileID: 5996705190413892543}
 --- !u!65 &7365237309402262875
 BoxCollider:
   m_ObjectHideFlags: 0

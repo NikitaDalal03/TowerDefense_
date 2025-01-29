@@ -144,6 +144,8 @@ MonoBehaviour:
   shotParticle: {fileID: 2915270535805615034}
   towerHead: {fileID: 5446980034637198320}
   damage: 2
+  rotationSpeed: 200
+  turretPivot: {fileID: 5446980034637198320}
 --- !u!65 &8124987870309530715
 BoxCollider:
   m_ObjectHideFlags: 0
