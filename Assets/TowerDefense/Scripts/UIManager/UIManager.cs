@@ -8,7 +8,8 @@ public enum GameScreens
     Home,
     Play,
     GameOver,
-    Win
+    Win,
+    LevelSelection
 }
 public enum GamePopUp
 {

@@ -21,6 +21,6 @@ public class HomeScreen : BaseScreen
     void OnPlay()
     {
         //SoundManager.inst.PlaySound(SoundName.BtnClick);
-        UIManager.instance.SwitchScreen(GameScreens.Play);
+        UIManager.instance.SwitchScreen(GameScreens.LevelSelection);
     }
 }

@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 public class GameOverScreen : BaseScreen
 {
     [SerializeField] Button homeButton;
+    [SerializeField] Button playAgainButton;
 
     private void Start()
     {
         homeButton.onClick.AddListener(OnHome);
+        playAgainButton.onClick.AddListener(OnPlayAgain);
     }
 
     public override void ActivateScreen()
@@ -23,8 +25,11 @@ public class GameOverScreen : BaseScreen
 
     void OnHome()
     {
-        SceneManager.LoadScene(0);
-       // UIManager.instance.SwitchScreen(GameScreens.Play);
+        UIManager.instance.SwitchScreen(GameScreens.Home);
     }
 
+    void OnPlayAgain()
+    {
+
+    }
 }

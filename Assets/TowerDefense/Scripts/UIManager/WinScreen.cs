@@ -7,12 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class WinScreen : BaseScreen
 {
-    [SerializeField] Button homeButton;
-
+    [SerializeField] Button playAgainButton;
+    [SerializeField] Button nextButton;
 
     private void Start()
     {
-        homeButton.onClick.AddListener(OnHome);
+        playAgainButton.onClick.AddListener(OnPlayAgain);
+        nextButton.onClick.AddListener(OnNext);
     }
 
     public override void ActivateScreen()
@@ -25,10 +26,13 @@ public class WinScreen : BaseScreen
         base.DeActivateScreen();
     }
 
-    void OnHome()
+    void OnPlayAgain()
     {
         //SoundManager.inst.PlaySound(SoundName.BtnClick);
-        SceneManager.LoadScene(0);
     }
 
+    void OnNext()
+    {
+        UIManager.instance.SwitchScreen(GameScreens.Play);
+    }
 }
