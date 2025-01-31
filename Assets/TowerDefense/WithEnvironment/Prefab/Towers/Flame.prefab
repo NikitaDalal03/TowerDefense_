@@ -84,12 +84,13 @@ MonoBehaviour:
   EnemiesLayer:
     serializedVersion: 2
     m_Bits: 64
-  target: {fileID: 7632623667256659542, guid: 9604728715550467f892f1c82fbc8a31, type: 3}
+  target: {fileID: 8219599605008979216, guid: 5890fc4b2294f48bb9f8868114120627, type: 3}
   towerPivote: {fileID: 2859094089431818903}
-  SummonCost: 450
+  SummonCost: 600
   damage: 15
   fireRate: 2
   range: 10
+  rotationSpeed: 50
   placementParticle: {fileID: 3490366323546606043}
 --- !u!114 &7849267430813402363
 MonoBehaviour:
@@ -107,8 +108,6 @@ MonoBehaviour:
   fireEffect: {fileID: 5512247529042275505}
   damage: 0
   fireRate: 0
-  rotationSpeed: 200
-  turretPivot: {fileID: 2859094089431818903}
 --- !u!65 &6557316875767787595
 BoxCollider:
   m_ObjectHideFlags: 0

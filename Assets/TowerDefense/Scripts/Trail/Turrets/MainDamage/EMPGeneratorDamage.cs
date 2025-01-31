@@ -26,6 +26,5 @@ public class EMPGeneratorDamage : MonoBehaviour, IDamageMethod
             float slowDownFactor = 0.1f;
             target.ApplySlowdown(slowDownDuration, slowDownFactor); 
         }
-    }
-    
+    }   
 }

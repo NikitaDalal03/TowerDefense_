@@ -471,10 +471,11 @@ MonoBehaviour:
     m_Bits: 64
   target: {fileID: 8219599605008979216, guid: 5890fc4b2294f48bb9f8868114120627, type: 3}
   towerPivote: {fileID: 1757965825153571487}
-  SummonCost: 100
+  SummonCost: 500
   damage: 0
   fireRate: 0
   range: 10
+  rotationSpeed: 50
   placementParticle: {fileID: 1709287059813877861}
 --- !u!65 &4820615922398879026
 BoxCollider:

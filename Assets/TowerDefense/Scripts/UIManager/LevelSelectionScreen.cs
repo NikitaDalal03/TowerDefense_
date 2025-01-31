@@ -29,7 +29,6 @@ public class LecelSelectionScreen : BaseScreen
 
     void OnLevel1Btn()
     {
-
+        UIManager.instance.SwitchScreen(GameScreens.Play);
     }
-
 }
