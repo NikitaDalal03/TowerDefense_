@@ -12,6 +12,7 @@ public class BulletPool : MonoBehaviour
 
     public int poolSize = 10;
     public Bullet bulletPrefab;
+    public Transform bulletsContainer;
 
     void Awake()
     {
@@ -25,7 +26,7 @@ public class BulletPool : MonoBehaviour
     {
         for (int i = 0; i < poolSize; i++)
         {
-            Bullet bullet = Instantiate(bulletPrefab);
+            Bullet bullet = Instantiate(bulletPrefab, bulletsContainer);
             bullet.gameObject.SetActive(false); // Deactivate all bullets initially
             bulletPool.Enqueue(bullet);
         }

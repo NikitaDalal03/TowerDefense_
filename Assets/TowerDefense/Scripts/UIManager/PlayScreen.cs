@@ -27,7 +27,7 @@ public class PlayScreen : BaseScreen
         {
             GameLoopManager.Instance.StartSpawning();
             hasStartedSpawning = true;
-            waveBtn.interactable = false; 
+            waveBtn.interactable = false;
         }
     }
 

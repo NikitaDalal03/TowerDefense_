@@ -31,5 +31,4 @@ public class LevelManager : MonoBehaviour
         OnLevelChanged?.Invoke();
     }
 
-
 }

@@ -22,6 +22,7 @@ public class TowerPlacement : MonoBehaviour
     {
         if (towerPrefab == null)
         {
+            Debug.LogError("TowerPrefab is null!");
             return;
         }
 
@@ -32,6 +33,7 @@ public class TowerPlacement : MonoBehaviour
 
         currentPlacingTower = Instantiate(towerPrefab);
         isPlacing = true;
+        Debug.Log($"Placing tower: {towerPrefab.name}");
 
         // Change tower color to indicate placement mode
         Renderer towerRenderer = currentPlacingTower.GetComponent<Renderer>();

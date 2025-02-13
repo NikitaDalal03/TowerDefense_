@@ -33,6 +33,7 @@ public class WinScreen : BaseScreen
 
     void OnNext()
     {
+        LevelManager.Instance.NextLevel();
         UIManager.instance.SwitchScreen(GameScreens.Play);
     }
 }
